@@ -1,0 +1,15 @@
+# Don't track content of these folders
+auto-save-list/
+elpa/
+transient/
+
+# Don't track these files
+abbrev_defs
+ac-comphist.dat
+bookmarks
+config.el
+.last-package-update-day
+projectile-bookmarks.eld
+recentf
+session.*
+

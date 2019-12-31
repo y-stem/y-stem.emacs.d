@@ -1,0 +1,34 @@
+;;; -*- coding: utf-8 -*-
+
+;; ----- ido-last-directory-list -----
+(
+ ("/home/hercynian/org/SAGA/" . "201805/")
+)
+
+;; ----- ido-work-directory-list -----
+(
+ "/home/olwegm/org/SAGA/201902/"
+ "/home/hercynian/org/SAGA/201805/"
+)
+
+;; ----- ido-work-file-list -----
+(
+ "mathsuppliment.org"
+ "201805.org"
+)
+
+;; ----- ido-dir-file-cache -----
+(
+ ("/home/olwegm/org/SAGA/201902/" (23651 41510 25840 699000) "./" "201902.html" "../" ".#201902.org" "201902.org")
+
+ ("/home/hercynian/org/maxima/" (23537 44067 279941 742000) "images/" "borgauf-refactor.org" "../" ".#test.org" "test.org" "./")
+
+ ("/home/hercynian/org/SAGA/201805/" (23273 52131 334969 608000) "../" "./")
+
+ ("/home/hercynian/org/SAGA/" (23273 52131 334969 608000) "147pm2017.org" "201801/" "data/" "201708/" "201711/" "201802/" "contacts.csv" "201702/" "201804/" "201805/" "sagatemplate.html" "../" "201709/" "201803/" "201710/" "./" "201701/")
+
+ ("/home/hercynian/org/SAGA/201804/" (23269 65296 139341 936000) "images/" "201804.html" "201804test.org" "test.html" "jsontest1" "../" "jsontest" "test.org" "./" "201804.org")
+)
+
+;; ----- ido-unc-hosts-cache -----
+t
