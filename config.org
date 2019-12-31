@@ -16,7 +16,7 @@ This is the "official" *stembase.space* Emacs initialization files repository fo
 ** Quick Installation
 To start, open an terminal, create a directory in your top home directory, maybe call it, =my-emacs-init=, then =cd= into it and clone thusly:
 
-=git clone https://github.com/stembasespace/sbs.emacs.d.git .emacs.d=
+=git clone https://github.com/y-stem/y-stem.emacs.d.git .emacs.d=
 
 This should create a sub-directory =.emacs.d/=.
 
@@ -28,6 +28,7 @@ Now do =mkdir .emacs.d= in the top home and copy the one directory and the two f
 img/
 init.el
 config.org
+...
 #+end_example
 
 The first time you launch Emacs should be from the command line, probably best with debugging help to see if any errors happen
