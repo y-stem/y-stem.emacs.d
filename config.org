@@ -6,7 +6,7 @@
 #+LANGUAGE: en
 #+OPTIONS: num:nil
 #+ATTR_HTML: :style margin-left: auto; margin-right: auto;
-[[./img/sbs-dash.jpg]]
+[[./img/lisp-warning.jpg]]
 
 * Introduction
 
