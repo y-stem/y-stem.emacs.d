@@ -14,9 +14,9 @@
  '(my-info-alist (quote ((my-name . "") (my-email . ""))))
  '(org-capture-templates
    (quote
-    (("t" "todo" entry
-      (file+headline "~/org/todo.org" "Tasks")
-      "* TODO [#A] %? SCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+0d\"))")
+    (("a" "My TODO task format." entry
+         (file "~/org/ccynata/ccynatatasks.org")
+         "* TODO %? SCHEDULED: %t")     
      ("e" "elisptips" entry
       (file+headline "~/org/elisptips.org" "ElispTips")
       "* %U  %i  %a")
@@ -68,3 +68,8 @@
  ;; If there is more than one, they won't work right.
  '(default ((t (:inherit nil :stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 136 :width normal :foundry "xos4" :family "Terminus"))))
  '(fringe ((t (:background "#292b2e")))))
+
+;;superceded capture template
+;; ("t" "todo" entry
+;;       (file+headline "~/org/ccynata/ccynatatasks.org" "Tasks")
+;;       "* TODO [#A] %? SCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+0d\"))")

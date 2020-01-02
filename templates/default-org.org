@@ -3,7 +3,7 @@
 #+TITLE: $1
 #+AUTHOR: Lawrence Bottorff
 #+EMAIL: borgauf@gmail.com
-#+DATE: `(format-time-string "%e %B %Y")`
+#+DATE: `(borgauf/insert-dateutc.1)`
 # #+Filetags: :SAGA
 #+TAGS: experiment_nata(e) idea_nata(i) chem_nata(c) logs_nata(l) y_stem(y)
 #+LANGUAGE:  en

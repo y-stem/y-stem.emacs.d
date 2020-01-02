@@ -1294,14 +1294,9 @@ Make sure latest-greatest org-mode is on board
   (setq org-directory "~/org")
   (setq org-default-notes-file (concat org-directory "/capture.org"))
 					;(define-key global-map "\C-cc" 'org-capture)
-  (setq org-capture-templates
-	'(("t" "Todo" entry (file+headline "~/org/gtd.org" "Tasks")
-	   "* TODO %?\n  %i\n  %a")
-	  ("m" "ElispNotes" entry (file+datetree "~/org/capture.org")
-	   "* %?\nEntered on %U\n  %i\n  %a")))
 
   ;;file to save todo items
-  (setq org-agenda-files (quote ("~/org/todo.org")))
+  (setq org-agenda-files (quote ("~/org/ccynata/ccynatatasks.org")))
 
 
   ;;set priority range from A to C with default A
@@ -1319,6 +1314,11 @@ Make sure latest-greatest org-mode is on board
       ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   ;; org-mode agenda options                                                ;;
       ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+  ;; display scheduled items followed by all TODO items
+  (setq org-agenda-custom-commands
+      '(("c" "Simple agenda view"
+         ((agenda "")
+          (alltodo "")))))
   ;;open agenda in current window
   (setq org-agenda-window-setup (quote current-window))
   ;;warn me of any deadlines in next 7 days
@@ -1365,17 +1365,20 @@ Make sure latest-greatest org-mode is on board
 
 
   (setq org-todo-keywords
-	(quote ((sequence "TODO(t)" "|" "CANCELLED(c@/!)" "DONE(d)"))))
+	(quote ((sequence "TODO(t)" "NEXT" "IN-PROGRESS" "WAITING" "HOLD" "|" "CANCELLED(c@/!)" "FIXED(f)" "DONE(d)"))))
 
   (setq org-use-fast-todo-selection t)
   (setq org-treat-S-cursor-todo-selection-as-state-change nil)
 
   (setq org-todo-keyword-faces
-	'(("TODO" . (:foreground "green" :weight bold))
+	'(("TODO" . (:foreground "forest green" :weight bold))
 	  ("NEXT" :foreground "blue" :weight bold)
+	  ("IN-PROGRESS" :foreground "light blue" :weight bold)
 	  ("WAITING" :foreground "orange" :weight bold)
 	  ("HOLD" :foreground "magenta" :weight bold)
-	  ("CANCELLED" :foreground "forest green" :weight bold)))
+	  ("CANCELLED" :foreground "light green" :weight bold)
+	  ("FIXED" :foreground "dark green" :weight bold)
+	  ("DONE" :foreground "forest green" :weight bold)))
 
   (setq org-enforce-todo-dependencies t)
 
@@ -1673,9 +1676,20 @@ Memes, but it's fun and tiny.
 
 
 (tempo-define-template "org-src_R"
-		       '("#+begin_src R" p  n
+		       '("#+begin_src R :results output" p  n
 			 n "#+end_src" )
 		       "<R" "Insert R block" 'org-tempo-tags)
+
+(tempo-define-template "org-src_lisp"
+		       '("#+begin_src lisp" p  n
+			 n "#+end_src" )
+		       "<cl" "Insert Common Lisp block" 'org-tempo-tags)
+
+(tempo-define-template "org-src_geiser"
+		       '("#+begin_src scheme :session *racket1*" p  n
+			 n "#+end_src" )
+		       "<rs" "Insert Racket Scheme block" 'org-tempo-tags)
+
 
 (tempo-define-template "org-src-named-R"
 		       '("#+name: " p  n
@@ -1764,6 +1778,19 @@ Memes, but it's fun and tiny.
   
  )
 (global-set-key (kbd "C-+") 'org-skeleton)
+#+end_src
+
+*** Agenda window
+
+#+begin_src emacs-lisp
+(defun borgauf/pop-to-org-agenda (split)
+  "Visit the org agenda, in the current window or a SPLIT."
+  (interactive "P")
+  (org-agenda-list)
+  (when (not split)
+    (delete-other-windows)))
+
+(define-key global-map (kbd "C-c t a") 'borgauf/pop-to-org-agenda)
 #+end_src
 
 *** Run code in org-mode file
