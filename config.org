@@ -1250,7 +1250,11 @@ Requires libclang to be installed.
   (add-hook 'shell-mode-hook 'shell-mode-company-init))
 #+END_SRC
 
+*** Haskell
 
+#+BEGIN_SRC emacs-lisp
+;;(setq haskell-process-type 'stack-ghci)
+#+END_SRC
 
 * Org-mode
 ** org-plus-contrib
