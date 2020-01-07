@@ -230,11 +230,11 @@ This is annoying, remove this line if you like being visually reminded of events
 #+END_SRC
 *** Set UTF-8 encoding
 #+BEGIN_SRC emacs-lisp 
-(setq locale-coding-system 'utf-8)
-(set-terminal-coding-system 'utf-8)
-(set-keyboard-coding-system 'utf-8)
-(set-selection-coding-system 'utf-8)
-(prefer-coding-system 'utf-8)
+;; (setq locale-coding-system 'utf-8)
+;; (set-terminal-coding-system 'utf-8)
+;; (set-keyboard-coding-system 'utf-8)
+;; (set-selection-coding-system 'utf-8)
+;; (prefer-coding-system 'utf-8)
 #+END_SRC
 *** Highligh current line
 =hl-line= is awesome! It's not very awesome in the terminal version of emacs though, so we don't use that.
@@ -245,11 +245,11 @@ Besides, it's only used for programming.
 *** Pretty symbols
 Changes =lambda= to an actual symbol and a few others as well, only in the GUI version though.
 #+BEGIN_SRC emacs-lisp
-(when window-system
-  (use-package pretty-mode
-    :ensure t
-    :config
-    (global-pretty-mode t)))
+;; (when window-system
+;;   (use-package pretty-mode
+;;     :ensure t
+;;     :config
+;;     (global-pretty-mode t)))
 #+END_SRC
 
 ** Functionality
@@ -631,7 +631,7 @@ I like =M-s= for it, same as =C-s= is for moving by searching string, now =M-s= 
 Here I shall collect self-made functions that make editing text easier.
 
 ** Mark-Multiple
-I can barely contain my joy. This extension allows you to quickly mark the next occurence of a region and edit them all at once. Wow!
+I can barely contain my joy. This extension allows you to quickly mark the next occurrence of a region and edit them all at once. Wow!
 #+BEGIN_SRC emacs-lisp
 (use-package mark-multiple
   :ensure t
