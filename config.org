@@ -1049,6 +1049,12 @@ Customize the =geiser-implementations-alist=
 (add-to-list 'auto-mode-alist '("\\.l$" . picolisp-mode))
 #+END_SRC
 
+*** ditaa
+
+#+BEGIN_SRC emacs-lisp
+(setq org-ditaa-jar-path "/usr/share/ditaa/ditaa.jar")
+#+END_SRC
+
 
 *** c/c++
 **** yasnippet
