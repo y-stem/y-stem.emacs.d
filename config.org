@@ -1421,6 +1421,7 @@ Make sure latest-greatest org-mode is on board
 	   (ocaml . t)
 	   (picolisp . t)
 	   (prolog . t)
+	   (asymptote . t)
 	   (calc . t)
 	   (lisp . t)
 	   (makefile . t)
@@ -1443,6 +1444,7 @@ Make sure latest-greatest org-mode is on board
        "\C-x\C-s" #'org-edit-src-exit)))
 
 #+END_SRC
+
 
 **  Org Bullets
 Makes it all look a bit nicer, I hate looking at asterisks.
