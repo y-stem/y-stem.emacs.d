@@ -1433,6 +1433,7 @@ Make sure latest-greatest org-mode is on board
 	   (python . t)
 	   (shell . t)
 	   (haskell . t)
+	   (racket . t)
 	   (octave . t)
 	   (org . t)
 	   (plantuml . t)
