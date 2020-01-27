@@ -1687,6 +1687,11 @@ Memes, but it's fun and tiny.
 			 ":END:" )
 		       "<Pt" "Insert PROPERTIES time-uuid-level block" 'org-tempo-tags)
 
+(tempo-define-template "org-src-scheme"
+		       '("#+begin_src scheme :session" p  n
+			 n "#+end_src" )
+		       "<sc" "Insert scheme block" 'org-tempo-tags)
+
 
 (tempo-define-template "org-src_R"
 		       '("#+begin_src R :results output" p  n
@@ -1715,6 +1720,9 @@ Memes, but it's fun and tiny.
                          "#+begin_src emacs-lisp :results silent"   n
                          n "#+end_src" )
                        "<el" "Insert emacs-lisp block" 'org-tempo-tags)
+
+
+
 
 (tempo-define-template "org-src-elisp-test"
                        '("#+name: " p  n
