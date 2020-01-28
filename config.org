@@ -1,7 +1,7 @@
 # -*- mode: org -*-
 # -*- coding: utf-8 -*-
 #+STARTUP: showall
-#+TITLE: stembase.space Emacs
+#+TITLE: y-stem.space Emacs
 #+CREATOR: Dawid 'daedreth' Eckert
 #+LANGUAGE: en
 #+OPTIONS: num:nil
