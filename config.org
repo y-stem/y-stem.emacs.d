@@ -875,9 +875,35 @@ Minor, non-completion related settings and plugins for writing code.
   (add-hook 'find-file-hook 'auto-insert)
   (auto-insert-mode 1)
 
+  (defcustom auto-insert-init-form 'auto-insert-init-form
+    "Symbol identifying init forms in template files."
+    :group 'auto-insert
+    :type 'symbol)
+
+  (defun my-eval-auto-insert-init-form ()
+    "Evaluate (AUTO-INSERT-INIT-FORM ...) in autoinsert templates.
+     Thereby, AUTO-INSERT-INIT-FORM stands for the symbol defined by
+     the customizable variable `auto-insert-init-form'.
+     \(auto-insert-init-form ...) works like `progn'.
+     Applied in the newly created file it should return the string
+    that replaces the form."
+    (goto-char (point-min))
+    (cl-letf (((symbol-function auto-insert-init-form) #'progn))
+      (while (re-search-forward "(auto-insert-init-form[[:space:]]" nil t)
+	(let* ((beg (goto-char (match-beginning 0)))
+	       (end (with-syntax-table emacs-lisp-mode-syntax-table
+		      (forward-sexp)
+		      (point)))
+	       (str (eval (read (buffer-substring beg end)))))
+	  (delete-region beg end)
+	  (insert str)))))
+
   :config
-  (define-auto-insert "\\.org?$" "default-org.org"))
+  (define-auto-insert "\\.org?$" "default-org.org")
+  (define-auto-insert "poolchem.org?\\'" ["poolchem.org" my-eval-auto-insert-init-form]))
+
 #+end_src
+
 
 ** yasnippet
 #+BEGIN_SRC emacs-lisp
@@ -1038,16 +1064,17 @@ Customize the =geiser-implementations-alist=
 #+end_src
 
 *** picolisp
-# #+BEGIN_SRC emacs-lisp
-# (add-to-list 'load-path "~/opt/picoLisp/lib/el")
-# (load "tsm.el") ;; Picolisp TransientSymbolsMarkup (*Tsm)
-# (autoload 'run-picolisp "inferior-picolisp")
-# (autoload 'picolisp-mode "picolisp" "Major mode for editing
-#      Picolisp." t)
 
-# (setq picolisp-program-name "/usr/bin/pil")
-# (add-to-list 'auto-mode-alist '("\\.l$" . picolisp-mode))
-# #+END_SRC
+#+BEGIN_SRC emacs-lisp
+(add-to-list 'load-path "~/opt/picoLisp/lib/el")
+(load "tsm.el") ;; Picolisp TransientSymbolsMarkup (*Tsm)
+(autoload 'run-picolisp "inferior-picolisp")
+(autoload 'picolisp-mode "picolisp" "Major mode for editing
+     Picolisp." t)
+
+(setq picolisp-program-name "/usr/bin/pil")
+(add-to-list 'auto-mode-alist '("\\.l$" . picolisp-mode))
+#+END_SRC
 
 *** ditaa
 
@@ -1600,9 +1627,11 @@ Pretty self-explanatory, useful as hell if you use exwm.
 
 
 * Diminishing modes
-Your modeline is sacred, and if you have a lot of modes enabled, as you will if you use this config,
-you might end up with a lot of clutter there, the package =diminish= disables modes on the mode line but keeps
-them running, it just prevents them from showing up and taking up space.
+Your modeline is sacred, and if you have a lot of modes enabled, as
+you will if you use this config, you might end up with a lot of
+clutter there, the package =diminish= disables modes on the mode line
+but keeps them running, it just prevents them from showing up and
+taking up space.
 
 *THIS WILL BE REMOVED SOON AS USE-PACKAGE HAS THE FUNCTIONALITY BUILT IN*
 
@@ -1673,18 +1702,28 @@ Memes, but it's fun and tiny.
 
 *** easy template additions
 
-#+begin_src emacs-lisp 
+#+begin_src emacs-lisp
 
 (require 'org-tempo)
 (setq tempo-interactive t)
 
-(tempo-define-template "org-PROPERTIES_time-uuid-level"
+(tempo-define-template "org-PROPERTIES_time-vertex-edge-level"
 		       '(":PROPERTIES:" n
 			 ":HLEVEL: " (borgauf/insert-level) n
 			 ":Time: " (borgauf/insert-dateutc.1) n
-			 ":UUID: " (borgauf/insert-uuid) n
+			 ":VERTEX: " (borgauf/insert-uuid) n
+			 ":EDGES: " n
 			 ":END:" )
-		       "<Pt" "Insert PROPERTIES time-uuid-level block" 'org-tempo-tags)
+		       "<Pt" "Insert PROPERTIES time-vertex-edge-level block" 'org-tempo-tags)
+
+;; (tempo-define-template "org-PROPERTIES_week-time-uuid-level"
+;; 		       '(":PROPERTIES:" n
+;; 			 ":HLEVEL: " (borgauf/insert-level) n
+;; 			 ":Time: " (borgauf/insert-dateutc.1) n
+;; 			 ":Week: " (org-read-date nil nil "+sun" nil) n
+;; 			 ":UUID: " (borgauf/insert-uuid) n
+;; 			 ":END:" )
+;; 		       "<Pw" "Insert PROPERTIES time-uuid-level block" 'org-tempo-tags)
 
 (tempo-define-template "org-src-scheme"
 		       '("#+begin_src scheme :session" p  n
@@ -1714,20 +1753,28 @@ Memes, but it's fun and tiny.
 			 n "#+end_src" )
 		       "<r" "Insert Named R block" 'org-tempo-tags)
 
-(tempo-define-template "org-src-elisp"
-                       '("#+name: " p  n
-                         "#+begin_src emacs-lisp :results silent"   n
-                         n "#+end_src" )
-                       "<el" "Insert emacs-lisp block" 'org-tempo-tags)
+;; (tempo-define-template "org-src-elisp-meta"
+;;                        '("#+name: " p  n
+;;                          "#+begin_src emacs-lisp :results "   n
+;;                          n "#+end_src" )
+;;                        "<em" "Insert emacs-lisp meta block" 'org-tempo-tags)
+
+;; (tempo-define-template "org-src-elisp-tangle"
+;;                        '("#+begin_src emacs-lisp :results :tangle " n
+;;                          n "#+end_src" )
+;;                        "<et" "Insert emacs-lisp tangle block" 'org-tempo-tags)
+
+;; (tempo-define-template "org-src-elisp"
+;;                        '("#+begin_src emacs-lisp :results " n
+;;                          n "#+end_src" )
+;;                        "<el" "Insert emacs-lisp block" 'org-tempo-tags)
 
 
-
-
-(tempo-define-template "org-src-elisp-test"
-                       '("#+name: " p  n
-                         "#+begin_src emacs-lisp :results value verbatim :exports both"   n
-                         n "#+end_src" )
-                       "<et" "Insert emacs-lisp test block" 'org-tempo-tags)
+;; (tempo-define-template "org-src-elisp-test"
+;;                        '("#+name: " p  n
+;;                          "#+begin_src emacs-lisp :results value verbatim :exports both"   n
+;;                          n "#+end_src" )
+;;                        "<et" "Insert emacs-lisp test block" 'org-tempo-tags)
 
 (tempo-define-template "org-eqnarray"
 		       '("\\begin{eqnarray} " '> n p
@@ -1748,6 +1795,7 @@ Memes, but it's fun and tiny.
 
 #+end_src
 
+
 *** stop <> auto-completion
 
 #+begin_src emacs-lisp
@@ -1757,6 +1805,7 @@ Memes, but it's fun and tiny.
    (modify-syntax-entry ?< ".")
    (modify-syntax-entry ?> ".")))
 #+end_src
+
 
 *** spelling/flyspell
 
