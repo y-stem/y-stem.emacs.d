@@ -59,6 +59,9 @@
 
 ;;; Establish separate customization file rather than
 ;;; keeping custom-set-variables stuff here
+;;; Remember, anything done in config.org will be overridden
+;;; by my-custom.el, which follows it, e.g., by
+;;; any custom-set-variables entries...
 
 (setq custom-file "~/.emacs.d/my-custom.el")
 (load custom-file)

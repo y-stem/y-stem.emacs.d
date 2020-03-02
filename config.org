@@ -1328,12 +1328,12 @@ Make sure latest-greatest org-mode is on board
     (global-set-key (kbd "C-c '") 'org-edit-src-code)
                                           ;(require 'ox-md)
 
-    (setq org-directory "~/org")
+    (setq org-directory "~/Dropbox/org")
     (setq org-default-notes-file (concat org-directory "/capture.org"))
                                           ;(define-key global-map "\C-cc" 'org-capture)
 
     ;;file to save todo items
-    (setq org-agenda-files (quote ("~/org/ccynata/ccynatatasks.org")))
+    (setq org-agenda-files (quote ("~/org/ccynata/ccynata-agenda.org")))
 
 
     ;;set priority range from A to C with default A
@@ -1398,11 +1398,9 @@ Make sure latest-greatest org-mode is on board
 
     (add-hook 'org-mode-hook 'my/org-mode-defaults)
 
-    ;; Fontify org-mode code blocks
-
-
-    (setq org-todo-keywords
-          (quote ((sequence "TODO(t)" "NEXT" "IN-PROGRESS" "WAITING" "HOLD" "|" "CANCELLED(c@/!)" "FIXED(f)" "DONE(d)"))))
+    ;; This is done in my-custom.el in its custom-set-variables section
+    ;; (setq org-todo-keywords
+    ;;       (quote ((sequence "TODO(t)" "NEXT" "IN-PROGRESS" "WAITING" "HOLD" "|" "CANCELLED(c@/!)" "FIXED(f)" "DONE(d)"))))
 
     (setq org-use-fast-todo-selection t)
     (setq org-treat-S-cursor-todo-selection-as-state-change nil)
@@ -1471,6 +1469,7 @@ Make sure latest-greatest org-mode is on board
          "\C-x\C-s" #'org-edit-src-exit)))
 
 #+END_SRC
+
 
 
 **  Org Bullets
@@ -1696,6 +1695,14 @@ Memes, but it's fun and tiny.
   :ensure t)
 #+END_SRC
 
+* emacsql
+
+#+begin_src emacs-lisp
+(use-package emacsql-sqlite
+  :ensure t)
+#+end_src
+
+
 * Personal Additions
 
 ** Misc tweaks
@@ -1725,6 +1732,13 @@ Memes, but it's fun and tiny.
 ;; 			 ":END:" )
 ;; 		       "<Pw" "Insert PROPERTIES time-uuid-level block" 'org-tempo-tags)
 
+(tempo-define-template "org-PROPERTIES_vertex-edge"
+		       '(":PROPERTIES:" n
+			 ":VERTEX: " (borgauf/insert-uuid) n
+			 ":EDGES: " n
+			 ":END:" )
+		       "<Pv" "Insert PROPERTIES vertex-edge block" 'org-tempo-tags)
+
 (tempo-define-template "org-src-scheme"
 		       '("#+begin_src scheme :session" p  n
 			 n "#+end_src" )
@@ -1753,28 +1767,22 @@ Memes, but it's fun and tiny.
 			 n "#+end_src" )
 		       "<r" "Insert Named R block" 'org-tempo-tags)
 
-;; (tempo-define-template "org-src-elisp-meta"
-;;                        '("#+name: " p  n
-;;                          "#+begin_src emacs-lisp :results "   n
-;;                          n "#+end_src" )
-;;                        "<em" "Insert emacs-lisp meta block" 'org-tempo-tags)
+(tempo-define-template "org-src-elisp-meta"
+                       '("#+name: " p  n
+                         "#+begin_src emacs-lisp :results "   n
+                         n "#+end_src" )
+                       "<em" "Insert emacs-lisp meta block" 'org-tempo-tags)
 
-;; (tempo-define-template "org-src-elisp-tangle"
-;;                        '("#+begin_src emacs-lisp :results :tangle " n
-;;                          n "#+end_src" )
-;;                        "<et" "Insert emacs-lisp tangle block" 'org-tempo-tags)
+(tempo-define-template "org-src-elisp-tangle"
+                       '("#+begin_src emacs-lisp :results :tangle " n
+                         n "#+end_src" )
+                       "<et" "Insert emacs-lisp tangle block" 'org-tempo-tags)
 
-;; (tempo-define-template "org-src-elisp"
-;;                        '("#+begin_src emacs-lisp :results " n
-;;                          n "#+end_src" )
-;;                        "<el" "Insert emacs-lisp block" 'org-tempo-tags)
+(tempo-define-template "org-src-elisp"
+                       '("#+begin_src emacs-lisp :results " n
+                         n "#+end_src" )
+                       "<el" "Insert emacs-lisp block" 'org-tempo-tags)
 
-
-;; (tempo-define-template "org-src-elisp-test"
-;;                        '("#+name: " p  n
-;;                          "#+begin_src emacs-lisp :results value verbatim :exports both"   n
-;;                          n "#+end_src" )
-;;                        "<et" "Insert emacs-lisp test block" 'org-tempo-tags)
 
 (tempo-define-template "org-eqnarray"
 		       '("\\begin{eqnarray} " '> n p
@@ -1918,3 +1926,5 @@ Memes, but it's fun and tiny.
         (find-function func)
       (error "%s is not an elisp function" name))))
 #+END_SRC
+
+*** ccynata software

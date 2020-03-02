@@ -318,16 +318,28 @@ The document was typeset with
  '(geiser-default-implementation (quote racket))
  '(my-info-alist (quote ((my-name . "") (my-email . ""))))
  '(org-capture-templates
-   (quote
-    (("a" "My TODO task format." entry
-      (file "~/org/ccynata/ccynatatasks.org")
-      "* TODO %? SCHEDULED: %t")
-     ("e" "elisptips" entry
-      (file+headline "~/org/elisptips.org" "ElispTips")
-      "* %U  %i  %a")
-     ("g" "general" entry
-      (file "~/org/general.org" "General")
-      "* %U  %i  %a"))))
+   `(("a" "My TODO task format." entry
+     (file "~/Dropbox/org/ccynata/ccynatatasks.org")
+     "* TODO %? SCHEDULED: %t")
+    ("e" "elisptips" entry
+     (file+headline "~/Dropbox/org/elisptips.org" "ElispTips")
+     "* %U  %i  %a")
+    ("g" "general" entry
+     (file "~/Dropbox/org/general.org" "General")
+     "* %U  %i  %a")
+    ("b" "My TODO task format." entry
+     (file (lambda () (buffer-file-name)))
+     "* TODO %? SCHEDULED: %t\n\n from: %a"
+     :empty-lines 1)
+    ("c" "My TODO task format." entry
+     (file ,(format "%s" (buffer-file-name)))
+     "* TODO %? SCHEDULED: %t")
+    ("j" "Journal Note" entry (
+               file+olp+datetree
+               ,(concat
+                 org-directory
+                 (format-time-string "/journal-%m-%d.org")))
+     "* Event: %?\n %i\n  From: %a")))
  '(org-footnote-auto-adjust t)
  '(org-html-head-include-default-style nil)
  '(org-html-mathjax-options
@@ -360,9 +372,12 @@ The document was typeset with
      ("natalog" . 97)
      ("natamaint" . 98)
      ("natapump" . 99))))
+ '(org-todo-keywords
+   (quote
+    ((sequence "TODO(t@)" "NEXT(n@)" "TOGROK(g@)" "GROKKING(y@)" "IN-PROGRESS(p@)" "WAITING(w@)" "FEEDBACK(b@)" "HOLD(h@)" "INCIDENT(i@)" "VERIFY(v@)" "|" "GROKKED(k@)" "VERIFIED(r@)" "CANCELLED(c@/!)" "FIXED(f@)" "DONE(d@)" "TRANSFERED(u@)" "FEDBACK(e@)"))))
  '(package-selected-packages
    (quote
-    (ess json-mode ac-slime cmake-mode gnuplot flymake-css ac-geiser quack geiser elcord erc-hl-nicks diminish htmlize sudo-edit magit company-shell company-lua company-jedi company-irony company-c-headers flycheck-clang-analyzer company flycheck yasnippet org ox-tufte ox-twbs org-bullets popup-kill-ring zzz-to-char hungry-delete expand-region rainbow-delimiters rainbow-mode beacon mark-multiple avy helm linum-relative swiper switch-window which-key ivy symon fancy-battery spaceline dashboard projectile async pretty-mode zerodark-theme use-package)))
+    (emacsql-sqlite emacsql-mysql emacsql ess json-mode ac-slime cmake-mode gnuplot flymake-css ac-geiser quack geiser elcord erc-hl-nicks diminish htmlize sudo-edit magit company-shell company-lua company-jedi company-irony company-c-headers flycheck-clang-analyzer company flycheck yasnippet org ox-tufte ox-twbs org-bullets popup-kill-ring zzz-to-char hungry-delete expand-region rainbow-delimiters rainbow-mode beacon mark-multiple avy helm linum-relative swiper switch-window which-key ivy symon fancy-battery spaceline dashboard projectile async pretty-mode zerodark-theme use-package)))
  '(pos-tip-background-color "#36473A")
  '(pos-tip-foreground-color "#FFFFC8")
  '(reftex-default-bibliography (quote ("~/org/biblio/ref.bib")))
