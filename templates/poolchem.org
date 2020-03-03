@@ -1,0 +1,151 @@
+# # -*- mode: org -*-
+# # -*- coding: utf-8 -*-
+#+STARTUP: showall
+#+TITLE:
+
+
+* Log for the week of 
+
+** Spa
+
+
+
+#+tblname: pc1-(auto-insert-init-form (org-read-date nil nil "++mon" nil (org-time-string-to-time "2020-03-31")))
+|          | Influent | Effluent | GPM | ORP | pH | Temp | UV |
+|----------+----------+----------+-----+-----+----+------+----|
+| Su-Open  |          |          |     |     |    |      |    |
+| Su-Close |          |          |     |     |    |      |    |
+| M-Open   |          |          |     |     |    |      |    |
+| M-Break  |          |          |     |     |    |      |    |
+| M-Close  |          |          |     |     |    |      |    |
+| Tu-Open  |          |          |     |     |    |      |    |
+| Tu-Break |          |          |     |     |    |      |    |
+| Tu-Close |          |          |     |     |    |      |    |
+| W-Open   |          |          |     |     |    |      |    |
+| W-Break  |          |          |     |     |    |      |    |
+| W-Close  |          |          |     |     |    |      |    |
+| Th-Open  |          |          |     |     |    |      |    |
+| Th-Break |          |          |     |     |    |      |    |
+| Th-Close |          |          |     |     |    |      |    |
+| F-Open   |          |          |     |     |    |      |    |
+| F-Break  |          |          |     |     |    |      |    |
+| F-Close  |          |          |     |     |    |      |    |
+| Sa-Open  |          |          |     |     |    |      |    |
+| Sa-Close |          |          |     |     |    |      |    |
+
+
+
+|          | FreeCl | TotCl | CombCl | pH | ALK | CaHard |
+|----------+--------+-------+--------+----+-----+--------|
+| Su-Open  |        |       |        |    |     |        |
+| Su-Close |        |       |        |    |     |        |
+| M-Open   |        |       |        |    |     |        |
+| M-Break  |        |       |        |    |     |        |
+| M-Close  |        |       |        |    |     |        |
+| Tu-Open  |        |       |        |    |     |        |
+| Tu-Break |        |       |        |    |     |        |
+| Tu-Close |        |       |        |    |     |        |
+| W-Open   |        |       |        |    |     |        |
+| W-Break  |        |       |        |    |     |        |
+| W-Close  |        |       |        |    |     |        |
+| Th-Open  |        |       |        |    |     |        |
+| Th-Break |        |       |        |    |     |        |
+| Th-Close |        |       |        |    |     |        |
+| F-Open   |        |       |        |    |     |        |
+| F-Break  |        |       |        |    |     |        |
+| F-Close  |        |       |        |    |     |        |
+| Sa-Open  |        |       |        |    |     |        |
+| Sa-Close |        |       |        |    |     |        |
+
+
+|          | Color | Odor | EyeIrrit | DrainCov |
+| Su-Open  |       |      |          |          |
+| Su-Close |       |      |          |          |
+| M-Open   |       |      |          |          |
+| M-Break  |       |      |          |          |
+| M-Close  |       |      |          |          |
+| Tu-Open  |       |      |          |          |
+| Tu-Break |       |      |          |          |
+| Tu-Close |       |      |          |          |
+| W-Open   |       |      |          |          |
+| W-Break  |       |      |          |          |
+| W-Close  |       |      |          |          |
+| Th-Open  |       |      |          |          |
+| Th-Break |       |      |          |          |
+| Th-Close |       |      |          |          |
+| F-Open   |       |      |          |          |
+| F-Break  |       |      |          |          |
+| F-Close  |       |      |          |          |
+| Sa-Open  |       |      |          |          |
+| Sa-Close |       |      |          |          |
+
+
+** Pool
+
+|          | Influent | Effluent | GPM | ORP | pH | Temp | UV |
+|----------+----------+----------+-----+-----+----+------+----|
+| Su-Open  |          |          |     |     |    |      |    |
+| Su-Close |          |          |     |     |    |      |    |
+| M-Open   |          |          |     |     |    |      |    |
+| M-Break  |          |          |     |     |    |      |    |
+| M-Close  |          |          |     |     |    |      |    |
+| Tu-Open  |          |          |     |     |    |      |    |
+| Tu-Break |          |          |     |     |    |      |    |
+| Tu-Close |          |          |     |     |    |      |    |
+| W-Open   |          |          |     |     |    |      |    |
+| W-Break  |          |          |     |     |    |      |    |
+| W-Close  |          |          |     |     |    |      |    |
+| Th-Open  |          |          |     |     |    |      |    |
+| Th-Break |          |          |     |     |    |      |    |
+| Th-Close |          |          |     |     |    |      |    |
+| F-Open   |          |          |     |     |    |      |    |
+| F-Break  |          |          |     |     |    |      |    |
+| F-Close  |          |          |     |     |    |      |    |
+| Sa-Open  |          |          |     |     |    |      |    |
+| Sa-Close |          |          |     |     |    |      |    |
+
+
+
+|          | FreeCl | TotCl | CombCl | pH | ALK | CaHard |
+|----------+--------+-------+--------+----+-----+--------|
+| Su-Open  |        |       |        |    |     |        |
+| Su-Close |        |       |        |    |     |        |
+| M-Open   |        |       |        |    |     |        |
+| M-Break  |        |       |        |    |     |        |
+| M-Close  |        |       |        |    |     |        |
+| Tu-Open  |        |       |        |    |     |        |
+| Tu-Break |        |       |        |    |     |        |
+| Tu-Close |        |       |        |    |     |        |
+| W-Open   |        |       |        |    |     |        |
+| W-Break  |        |       |        |    |     |        |
+| W-Close  |        |       |        |    |     |        |
+| Th-Open  |        |       |        |    |     |        |
+| Th-Break |        |       |        |    |     |        |
+| Th-Close |        |       |        |    |     |        |
+| F-Open   |        |       |        |    |     |        |
+| F-Break  |        |       |        |    |     |        |
+| F-Close  |        |       |        |    |     |        |
+| Sa-Open  |        |       |        |    |     |        |
+| Sa-Close |        |       |        |    |     |        |
+
+
+|          | Color | Odor | EyeIrrit | DrainCov |
+| Su-Open  |       |      |          |          |
+| Su-Close |       |      |          |          |
+| M-Open   |       |      |          |          |
+| M-Break  |       |      |          |          |
+| M-Close  |       |      |          |          |
+| Tu-Open  |       |      |          |          |
+| Tu-Break |       |      |          |          |
+| Tu-Close |       |      |          |          |
+| W-Open   |       |      |          |          |
+| W-Break  |       |      |          |          |
+| W-Close  |       |      |          |          |
+| Th-Open  |       |      |          |          |
+| Th-Break |       |      |          |          |
+| Th-Close |       |      |          |          |
+| F-Open   |       |      |          |          |
+| F-Break  |       |      |          |          |
+| F-Close  |       |      |          |          |
+| Sa-Open  |       |      |          |          |
+| Sa-Close |       |      |          |          |
