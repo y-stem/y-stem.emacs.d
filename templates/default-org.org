@@ -42,7 +42,7 @@
 #+STARTUP: indent
 # This makes MathJax/LaTeX appear in buffer (UTF-8)
 # #+STARTUP: entitiespretty
-#+STARTUP: logdrawer
+# #+STARTUP: logdrawer
 # This makes pictures appear in buffer
 # #+STARTUP: inlineimages
 #+STARTUP: fnadjust

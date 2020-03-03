@@ -848,7 +848,7 @@ C-n and C-p totally work for this.
 #+END_SRC
 
 * Programming
-Minor, non-completion related settings and plugins for writing code.
+
 
 ** auto-complete
 
@@ -967,6 +967,16 @@ Each category also has additional settings.
 #                 (if (eq window-system 'x)
 #                     (font-lock-mode 1))))))
 # #+END_SRC
+
+*** sparql-mode
+
+#+BEGIN_SRC emacs-lisp
+(use-package sparql-mode
+  :ensure t
+  :init
+  (add-hook 'sparql-mode-hook 'company-mode))
+#+END_SRC
+
 
 *** Scheme world
 
