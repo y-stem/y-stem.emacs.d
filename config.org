@@ -913,9 +913,9 @@ C-n and C-p totally work for this.
   (yas-global-mode 1)
   :config
   (add-to-list 'yas-snippet-dirs (locate-user-emacs-file "snippets")))
-  (use-package yasnippet-snippets
-    :ensure t)
-  (yas-reload-all)
+(use-package yasnippet-snippets
+  :ensure t)
+(yas-reload-all)
 #+END_SRC
 
 ** flycheck
@@ -974,8 +974,17 @@ Each category also has additional settings.
 (use-package sparql-mode
   :ensure t
   :init
-  (add-hook 'sparql-mode-hook 'company-mode))
+  (add-hook 'sparql-mode-hook 'company-mode)
+  (add-to-list 'auto-mode-alist '("\\.sparql$" . sparql-mode))
+  (add-to-list 'auto-mode-alist '("\\.rq$" . sparql-mode)))
 #+END_SRC
+
+*** ntriple-mode
+
+#+begin_src emacs-lisp
+(load-file "~/.emacs.d/modes/ntriple-mode/ntriple-mode.el")
+(require 'ntriple-mode)
+#+end_src
 
 
 *** Scheme world
@@ -1314,171 +1323,175 @@ Requires libclang to be installed.
 Make sure latest-greatest org-mode is on board
 
 #+BEGIN_SRC emacs-lisp
-  (use-package org
-    :ensure t
-    :bind (("C-c a" . org-agenda)
-           ("C-c c" . org-capture)
-           ("C-c l" . org-store-link))
-    :config
-    (setq org-ellipsis " ")
-    ;; Fontify org-mode code blocks
-    (setq org-src-fontify-natively t)
-    (setq org-src-tab-acts-natively t)
-    (setq org-confirm-babel-evaluate nil)
-    (setq org-export-with-smart-quotes t)
-    (setq org-src-window-setup 'current-window)
-    (add-hook 'org-mode-hook 'org-indent-mode)
-    ;; line wrapping
-    (add-hook 'org-mode-hook
-              '(lambda ()
-                 (visual-line-mode 1)))
+(use-package org
+  :ensure t
+  :bind (("C-c a" . org-agenda)
+	 ("C-c c" . org-capture)
+	 ("C-c l" . org-store-link))
+  :config
+  (setq org-ellipsis " ")
+  ;; Fontify org-mode code blocks
+  (setq org-src-fontify-natively t)
+  (setq org-src-tab-acts-natively t)
+  (setq org-confirm-babel-evaluate nil)
+  (setq org-export-with-smart-quotes t)
+  (setq org-src-window-setup 'current-window)
+  (add-hook 'org-mode-hook 'org-indent-mode)
+  ;; line wrapping
+  (add-hook 'org-mode-hook
+	    '(lambda ()
+	       (visual-line-mode 1)))
 
-    ;;keybindings
-    (unbind-key "C-c ;" org-mode-map)
-    (global-set-key (kbd "C-c '") 'org-edit-src-code)
-                                          ;(require 'ox-md)
+  ;;keybindings
+  (unbind-key "C-c ;" org-mode-map)
+  (global-set-key (kbd "C-c '") 'org-edit-src-code)
+					;(require 'ox-md)
 
-    (setq org-directory "~/Dropbox/org")
-    (setq org-default-notes-file (concat org-directory "/capture.org"))
-                                          ;(define-key global-map "\C-cc" 'org-capture)
+  (setq org-directory "~/Dropbox/org")
+  (setq org-default-notes-file (concat org-directory "/capture.org"))
+					;(define-key global-map "\C-cc" 'org-capture)
 
-    ;;file to save todo items
-    (setq org-agenda-files (quote ("~/org/ccynata/ccynata-agenda.org")))
-
-
-    ;;set priority range from A to C with default A
-    (setq org-highest-priority ?A)
-    (setq org-lowest-priority ?C)
-    (setq org-default-priority ?A)
+  ;;file to save todo items
+  (setq org-agenda-files (quote ("~/org/ccynata/ccynata-agenda.org")))
 
 
-    ;;set colours for priorities
-    (setq org-priority-faces '((?A . (:foreground "OliveDrab" :weight bold))
-                               (?B . (:foreground "LightSteelBlue"))
-                               (?C . (:foreground "#F0DFAF"))))
+  ;;set priority range from A to C with default A
+  (setq org-highest-priority ?A)
+  (setq org-lowest-priority ?C)
+  (setq org-default-priority ?A)
+
+
+  ;;set colours for priorities
+  (setq org-priority-faces '((?A . (:foreground "OliveDrab" :weight bold))
+			     (?B . (:foreground "LightSteelBlue"))
+			     (?C . (:foreground "#F0DFAF"))))
 
 
         ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-    ;; org-mode agenda options                                                ;;
+  ;; org-mode agenda options                                                ;;
         ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-    ;; display scheduled items followed by all TODO items
-    (setq org-agenda-custom-commands
+  ;; display scheduled items followed by all TODO items
+  (setq org-agenda-custom-commands
         '(("c" "Simple agenda view"
            ((agenda "")
             (alltodo "")))))
-    ;;open agenda in current window
-    (setq org-agenda-window-setup (quote current-window))
-    ;;warn me of any deadlines in next 7 days
-    (setq org-deadline-warning-days 7)
+  ;;open agenda in current window
+  (setq org-agenda-window-setup (quote current-window))
+  ;;warn me of any deadlines in next 7 days
+  (setq org-deadline-warning-days 7)
 
-    ;;don't show tasks as scheduled if they are already shown as a deadline
-    (setq org-agenda-skip-scheduled-if-deadline-is-shown t)
-    ;;don't give awarning colour to tasks with impending deadlines
-    ;;if they are scheduled to be done
-    (setq org-agenda-skip-deadline-prewarning-if-scheduled (quote pre-scheduled))
-    ;;don't show tasks that are scheduled or have deadlines in the
-    ;;normal todo list
-    (setq org-agenda-todo-ignore-deadlines (quote all))
-    (setq org-agenda-todo-ignore-scheduled (quote all))
+  ;;don't show tasks as scheduled if they are already shown as a deadline
+  (setq org-agenda-skip-scheduled-if-deadline-is-shown t)
+  ;;don't give awarning colour to tasks with impending deadlines
+  ;;if they are scheduled to be done
+  (setq org-agenda-skip-deadline-prewarning-if-scheduled (quote pre-scheduled))
+  ;;don't show tasks that are scheduled or have deadlines in the
+  ;;normal todo list
+  (setq org-agenda-todo-ignore-deadlines (quote all))
+  (setq org-agenda-todo-ignore-scheduled (quote all))
 
-    ;;sort tasks in order of when they are due and then by priority
+  ;;sort tasks in order of when they are due and then by priority
 
-    (setq org-agenda-sorting-strategy
-          (quote
-           ((agenda deadline-up priority-down)
-            (todo priority-down category-keep)
-            (tags priority-down category-keep)
-            (search category-keep))))
+  (setq org-agenda-sorting-strategy
+	(quote
+	 ((agenda deadline-up priority-down)
+	  (todo priority-down category-keep)
+	  (tags priority-down category-keep)
+	  (search category-keep))))
 
-    (setq org-capture-templates
-          '(("t" "todo" entry (file+headline "~/org/todo.org" "Tasks")
-             "* TODO [#A] %?\nSCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+0d\"))\n")))
+  (setq org-capture-templates
+	'(("t" "todo" entry (file+headline "~/org/todo.org" "Tasks")
+	   "* TODO [#A] %?\nSCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+0d\"))\n")))
 
 
-    (defun my/org-mode-defaults ()
-      (turn-on-org-cdlatex)
-      ;; (diminish 'org-cdlatex-mode "")
-      (turn-on-auto-fill)
+  (defun my/org-mode-defaults ()
+    (turn-on-org-cdlatex)
+    ;; (diminish 'org-cdlatex-mode "")
+    (turn-on-auto-fill)
 
-      ;; make `company-backends' local is critcal
-      ;; or else, you will have completion in every major mode, that's very annoying!
-      (make-local-variable 'company-backends)
-      ;; company-ispell is the plugin to complete words
-      (add-to-list 'company-backends 'company-ispell))
+    ;; make `company-backends' local is critcal
+    ;; or else, you will have completion in every major mode, that's very annoying!
+    (make-local-variable 'company-backends)
+    ;; company-ispell is the plugin to complete words
+    (add-to-list 'company-backends 'company-ispell))
 
-    (add-hook 'org-mode-hook 'my/org-mode-defaults)
+  (add-hook 'org-mode-hook 'my/org-mode-defaults)
 
-    ;; This is done in my-custom.el in its custom-set-variables section
-    ;; (setq org-todo-keywords
-    ;;       (quote ((sequence "TODO(t)" "NEXT" "IN-PROGRESS" "WAITING" "HOLD" "|" "CANCELLED(c@/!)" "FIXED(f)" "DONE(d)"))))
+  ;; This is done in my-custom.el in its custom-set-variables section
+  ;; (setq org-todo-keywords
+  ;;       (quote ((sequence "TODO(t)" "NEXT" "IN-PROGRESS" "WAITING" "HOLD" "|" "CANCELLED(c@/!)" "FIXED(f)" "DONE(d)"))))
 
-    (setq org-use-fast-todo-selection t)
-    (setq org-treat-S-cursor-todo-selection-as-state-change nil)
+  (setq org-use-fast-todo-selection t)
+  (setq org-treat-S-cursor-todo-selection-as-state-change nil)
 
-    (setq org-todo-keyword-faces
-          '(("TODO" . (:foreground "forest green" :weight bold))
-            ("NEXT" :foreground "blue" :weight bold)
-            ("IN-PROGRESS" :foreground "light blue" :weight bold)
-            ("WAITING" :foreground "orange" :weight bold)
-            ("HOLD" :foreground "magenta" :weight bold)
-            ("CANCELLED" :foreground "light green" :weight bold)
-            ("FIXED" :foreground "dark green" :weight bold)
-            ("DONE" :foreground "forest green" :weight bold)))
+  (setq org-todo-keyword-faces
+	'(("TODO" . (:foreground "forest green" :weight bold))
+	  ("NEXT" :foreground "blue" :weight bold)
+	  ("IN-PROGRESS" :foreground "light blue" :weight bold)
+	  ("WAITING" :foreground "orange" :weight bold)
+	  ("HOLD" :foreground "magenta" :weight bold)
+	  ("CANCELLED" :foreground "light green" :weight bold)
+	  ("FIXED" :foreground "dark green" :weight bold)
+	  ("DONE" :foreground "forest green" :weight bold)))
 
-    (setq org-enforce-todo-dependencies t)
+  (setq org-enforce-todo-dependencies t)
 
-    (setq org-latex-pdf-process
-          (quote ("pdflatex -interaction nonstopmode -shell-escape -output-directory %o %f"
-                  "bibtex $(basename %b)"
-                  "pdflatex -interaction nonstopmode -shell-escape -output-directory %o %f"
-                  "pdflatex -interaction nonstopmode -shell-escape -output-directory %o %f")))
+  (setq org-latex-pdf-process
+	(quote ("pdflatex -interaction nonstopmode -shell-escape -output-directory %o %f"
+		"bibtex $(basename %b)"
+		"pdflatex -interaction nonstopmode -shell-escape -output-directory %o %f"
+		"pdflatex -interaction nonstopmode -shell-escape -output-directory %o %f")))
 
-    (setq org-latex-create-formula-image-program 'imagemagick)
+  (setq org-latex-create-formula-image-program 'imagemagick)
 
-    ;; Tell the latex export to use the minted package for source
-    ;; code coloration.
-    (add-to-list 'org-latex-packages-alist '("" "minted"))
-    (require 'ox-latex)
-    (setq org-latex-listings 'minted)
+  ;; Tell the latex export to use the minted package for source
+  ;; code coloration.
+  (add-to-list 'org-latex-packages-alist '("" "minted"))
+  (require 'ox-latex)
+  (setq org-latex-listings 'minted)
 
-    ;; (setq org-latex-minted-options
-    ;;       '(("frame" "lines") ("framesep" "6pt")
-    ;;         ("mathescape" "true") ("fontsize" "\\small")))
+  ;; (setq org-latex-minted-options
+  ;;       '(("frame" "lines") ("framesep" "6pt")
+  ;;         ("mathescape" "true") ("fontsize" "\\small")))
 
-    ;; execute external programs.
-    ;;(add-to-list 'load-path "~/.emacs.d/modes/emacs-ob-racket")
+  ;; execute external programs.
+  ;;(add-to-list 'load-path "~/.emacs.d/modes/emacs-ob-racket")
 
-    (org-babel-do-load-languages
-     (quote org-babel-load-languages)
-     (quote ((emacs-lisp . t)
-             (dot . t)
-             (C . t)
-             (ocaml . t)
-             (picolisp . t)
-             (prolog . t)
-             (asymptote . t)
-             (calc . t)
-             (dot . t)
-             (lisp . t)
-             (makefile . t)
-             (scheme . t)
-             (R . t)
-             (gnuplot . t)
-             (ditaa . t)
-             (python . t)
-             (shell . t)
-             (haskell . t)
-             (octave . t)
-             (org . t)
-             (plantuml . t)
-             (sql . t)
-             (latex . t))))
+  (org-babel-do-load-languages
+   (quote org-babel-load-languages)
+   (quote ((emacs-lisp . t)
+	   (dot . t)
+	   (C . t)
+	   (ocaml . t)
+	   (picolisp . t)
+	   (prolog . t)
+	   (sparql . t)
+	   (asymptote . t)
+	   (calc . t)
+	   (dot . t)
+	   (lisp . t)
+	   (makefile . t)
+	   (scheme . t)
+	   (R . t)
+	   (gnuplot . t)
+	   (ditaa . t)
+	   (python . t)
+	   (shell . t)
+	   (haskell . t)
+	   (octave . t)
+	   (org . t)
+	   (plantuml . t)
+	   (sql . t)
+	   (latex . t))))
 
-    (eval-after-load 'org-src
-      '(define-key org-src-mode-map
-         "\C-x\C-s" #'org-edit-src-exit)))
+  (eval-after-load 'org-src
+    '(define-key org-src-mode-map
+       "\C-x\C-s" #'org-edit-src-exit)))
 
 #+END_SRC
+
+#+RESULTS:
+: org-store-link
 
 
 
@@ -1863,7 +1876,7 @@ Memes, but it's fun and tiny.
   "#+INFOJS_OPT: \n"
   "#+BABEL: :session *R* :cache yes :results output graphics :exports both :tangle yes \n"
   
- )
+  )
 (global-set-key (kbd "C-+") 'org-skeleton)
 #+end_src
 
