@@ -1065,21 +1065,64 @@ Customize the =geiser-implementations-alist=
   (add-hook 'tuareg-mode-hook 'utop-minor-mode))
 #+end_src
 
+*** ediprolog
+
+#+begin_src emacs-lisp
+(use-package ediprolog
+  :ensure t)
+#+end_src
+
 *** prolog
 
 #+begin_src emacs-lisp
-(use-package ob-prolog
-  :ensure t
-  :config
-					;(load-file "~/modes/prolog.el")
-  (require 'ob-prolog)
-  (setq prolog-system 'swipl)
-  (autoload 'run-prolog "prolog" "Start a Prolog sub-process." t)
-  (autoload 'prolog-mode "prolog" "Major mode for editing Prolog programs." t)
-  (autoload 'mercury-mode "prolog" "Major mode for editing Mercury programs." t)
-  (setq auto-mode-alist (append '(("\\.pl$" . prolog-mode)
-				  ("\\.m$" . mercury-mode))
-				auto-mode-alist)))
+(load-file "~/.emacs.d/modes/prolog.el")
+(setq prolog-system 'swi prolog-program-switches '((swi
+						    ("-G128M" "-T128M" "-L128M" "-O"))
+						   (t nil))
+      prolog-electric-if-then-else-flag t)
+
+;; produce nice comment blocks
+(defun prolog-insert-comment-block ()
+  "Insert a PceEmacs-style comment block like /* - - ... - - */ "
+  (interactive)
+  (let ((dashes "-"))
+    (dotimes (_ 36) (setq dashes (concat "- " dashes)))
+    (insert (format "/* %s\n\n%s */" dashes dashes))
+    (forward-line -1)
+    (indent-for-tab-command)))
+
+(global-set-key (kbd "C-c 8") 'prolog-insert-comment-block)
+
+;; inserts :- use_module(library())
+(global-set-key (kbd "C-c b")
+		(lambda ()
+		  (interactive)
+		  (insert ":- use_module(library()).")
+		  (forward-char -3)))
+
+(setq auto-mode-alist (append '(("\\.pl$" . prolog-mode)
+				("\\.m$" . mercury-mode))
+			      auto-mode-alist))
+
+(add-hook 'prolog-mode-hook
+	  (lambda ()
+	    (require 'flymake)
+	    (make-local-variable 'flymake-allowed-file-name-masks)
+	    (make-local-variable 'flymake-err-line-patterns)
+	    (setq flymake-err-line-patterns
+		  '(("ERROR: (?\\(.*?\\):\\([0-9]+\\)" 1 2)
+		    ("Warning: (\\(.*\\):\\([0-9]+\\)" 1 2)))
+	    (setq flymake-allowed-file-name-masks
+		  '(("\\.pl\\'" flymake-prolog-init)))
+	    (flymake-mode 1)))
+
+(defun flymake-prolog-init ()
+  (let* ((temp-file   (flymake-init-create-temp-buffer-copy
+		       'flymake-create-temp-inplace))
+	 (local-file  (file-relative-name
+		       temp-file
+		       (file-name-directory buffer-file-name))))
+    (list "swipl" (list "-q" "-t" "halt" "-s " local-file))))
 #+end_src
 
 *** picolisp
@@ -1729,6 +1772,27 @@ Memes, but it's fun and tiny.
 * Personal Additions
 
 ** Misc tweaks
+
+*** org-num
+
+...to toggle on automatic heading numbering...as seen added on export
+
+#+begin_src emacs-lisp
+(use-package org-num
+   :ensure t
+  ;;:load-path "lisp/"
+  :after org
+  :hook (org-mode . org-num-mode))
+#+end_src
+
+
+*** add org-id
+
+#+begin_src emacs-lisp
+(require 'org-id)
+(setq org-id-link-to-org-use-id 'create-if-interactive-and-no-custom-id)
+#+end_src
+
 
 *** easy template additions
 
