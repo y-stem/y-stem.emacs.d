@@ -1543,9 +1543,12 @@ Makes it all look a bit nicer, I hate looking at asterisks.
 #+BEGIN_SRC emacs-lisp
 (use-package org-bullets
   :ensure t
+  :custom
+  (org-bullets-bullet-list '("◉" "☯" "○" "☯" "✸" "☯" "✿" "☯" "✜" "☯" "◆" "☯" "▶"))
   :config
   (add-hook 'org-mode-hook (lambda () (org-bullets-mode))))
 #+END_SRC
+
 
 ** Twitter Bootstrap
 ;; which seems to be an alternative way to export to HtML (not to a twitter account)
