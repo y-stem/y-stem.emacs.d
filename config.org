@@ -1127,16 +1127,16 @@ Customize the =geiser-implementations-alist=
 
 *** picolisp
 
-#+BEGIN_SRC emacs-lisp
-(add-to-list 'load-path "~/opt/picoLisp/lib/el")
-(load "tsm.el") ;; Picolisp TransientSymbolsMarkup (*Tsm)
-(autoload 'run-picolisp "inferior-picolisp")
-(autoload 'picolisp-mode "picolisp" "Major mode for editing
-     Picolisp." t)
+# #+BEGIN_SRC emacs-lisp
+# (add-to-list 'load-path "~/opt/picoLisp/lib/el")
+# (load "tsm.el") ;; Picolisp TransientSymbolsMarkup (*Tsm)
+# (autoload 'run-picolisp "inferior-picolisp")
+# (autoload 'picolisp-mode "picolisp" "Major mode for editing
+#      Picolisp." t)
 
-(setq picolisp-program-name "/usr/bin/pil")
-(add-to-list 'auto-mode-alist '("\\.l$" . picolisp-mode))
-#+END_SRC
+# (setq picolisp-program-name "/usr/bin/pil")
+# (add-to-list 'auto-mode-alist '("\\.l$" . picolisp-mode))
+# #+END_SRC
 
 *** ditaa
 
