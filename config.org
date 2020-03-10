@@ -1544,11 +1544,10 @@ Makes it all look a bit nicer, I hate looking at asterisks.
 (use-package org-bullets
   :ensure t
   :custom
-  (org-bullets-bullet-list '("◉" "☯" "○" "☯" "✸" "☯" "✿" "☯" "✜" "☯" "◆" "☯" "▶"))
+  (org-bullets-bullet-list '("☰" "☱" "☲" "☳" "☴" "☵" "☶" "☷" "⚌" "⚍" "⚎" "⚏" "⛩"))
   :config
   (add-hook 'org-mode-hook (lambda () (org-bullets-mode))))
 #+END_SRC
-
 
 ** Twitter Bootstrap
 ;; which seems to be an alternative way to export to HtML (not to a twitter account)
@@ -1806,7 +1805,6 @@ Memes, but it's fun and tiny.
 
 (tempo-define-template "org-PROPERTIES_time-vertex-edge-level"
 		       '(":PROPERTIES:" n
-			 ":HLEVEL: " (borgauf/insert-level) n
 			 ":Time: " (borgauf/insert-dateutc.1) n
 			 ":VERTEX: " (borgauf/insert-uuid) n
 			 ":EDGES: " n
@@ -1892,7 +1890,6 @@ Memes, but it's fun and tiny.
 		       "<m" "Insert \\[ \\]" 'org-tempo-tags)
 
 #+end_src
-
 
 *** stop <> auto-completion
 
