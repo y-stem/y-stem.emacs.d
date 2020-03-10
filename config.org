@@ -1780,13 +1780,10 @@ Memes, but it's fun and tiny.
 ...to toggle on automatic heading numbering...as seen added on export
 
 #+begin_src emacs-lisp
-(use-package org-num
-   :ensure t
-  ;;:load-path "lisp/"
-  :after org
-  :hook (org-mode . org-num-mode))
+(require 'org-num)
+(org-num-mode 1)
+;;:hook (org-mode . org-num-mode))
 #+end_src
-
 
 *** add org-id
 
