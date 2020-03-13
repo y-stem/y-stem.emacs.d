@@ -1367,7 +1367,13 @@ Make sure latest-greatest org-mode is on board
 
 #+BEGIN_SRC emacs-lisp
 (use-package org
+  ;;:defer 2
   :ensure t
+  ;; :hook
+  ;; ((org-mode . org-num-mode)
+  ;;  (org-mode . (lambda () ;; this will make sure auto-fill works for org-mode
+  ;;                (setq-local comment-auto-fill-only-comments nil)
+  ;;                (setq-local display-line-numbers-type 'absolute))))
   :bind (("C-c a" . org-agenda)
 	 ("C-c c" . org-capture)
 	 ("C-c l" . org-store-link))
@@ -1487,7 +1493,10 @@ Make sure latest-greatest org-mode is on board
 
   (setq org-latex-create-formula-image-program 'imagemagick)
 
-  ;; Tell the latex export to use the minted package for source
+  (require 'org-num)
+  (add-hook 'org-mode-hook #'org-num-mode)
+
+;; Tell the latex export to use the minted package for source
   ;; code coloration.
   (add-to-list 'org-latex-packages-alist '("" "minted"))
   (require 'ox-latex)
@@ -1533,10 +1542,13 @@ Make sure latest-greatest org-mode is on board
 
 #+END_SRC
 
-#+RESULTS:
-: org-store-link
-
-
+** org-num
+# #+BEGIN_SRC emacs-lisp
+# (use-package org-num
+#   :load-path "lisp/"
+#   :after org
+#   :hook (org-mode . org-num-mode))
+# #+END_SRC
 
 **  Org Bullets
 Makes it all look a bit nicer, I hate looking at asterisks.
@@ -1775,16 +1787,6 @@ Memes, but it's fun and tiny.
 
 ** Misc tweaks
 
-*** org-num
-
-...to toggle on automatic heading numbering...as seen added on export
-
-#+begin_src emacs-lisp
-(require 'org-num)
-(org-num-mode 1)
-;;:hook (org-mode . org-num-mode))
-#+end_src
-
 *** add org-id
 
 #+begin_src emacs-lisp
@@ -1803,7 +1805,7 @@ Memes, but it's fun and tiny.
 (tempo-define-template "org-PROPERTIES_time-vertex-edge-level"
 		       '(":PROPERTIES:" n
 			 ":Time: " (borgauf/insert-dateutc.1) n
-			 ":VERTEX: " (borgauf/insert-uuid) n
+			 ":ID: " (borgauf/insert-uuid) n
 			 ":EDGES: " n
 			 ":END:" )
 		       "<Pt" "Insert PROPERTIES time-vertex-edge-level block" 'org-tempo-tags)
@@ -1819,7 +1821,7 @@ Memes, but it's fun and tiny.
 
 (tempo-define-template "org-PROPERTIES_vertex-edge"
 		       '(":PROPERTIES:" n
-			 ":VERTEX: " (borgauf/insert-uuid) n
+			 ":ID: " (borgauf/insert-uuid) n
 			 ":EDGES: " n
 			 ":END:" )
 		       "<Pv" "Insert PROPERTIES vertex-edge block" 'org-tempo-tags)
@@ -1868,6 +1870,11 @@ Memes, but it's fun and tiny.
                          n "#+end_src" )
                        "<el" "Insert emacs-lisp block" 'org-tempo-tags)
 
+(tempo-define-template "org-src-elisp-basic"
+                       '("#+begin_src emacs-lisp" n
+                         n "#+end_src" )
+                       "<eb" "Insert emacs-lisp basic block" 'org-tempo-tags)
+
 
 (tempo-define-template "org-eqnarray"
 		       '("\\begin{eqnarray} " '> n p
@@ -1887,6 +1894,9 @@ Memes, but it's fun and tiny.
 		       "<m" "Insert \\[ \\]" 'org-tempo-tags)
 
 #+end_src
+
+#+RESULTS:
+: tempo-template-org-displaymath
 
 *** stop <> auto-completion
 
@@ -1921,6 +1931,85 @@ Memes, but it's fun and tiny.
 (add-hook 'org-mode-hook 'flyspell-ignore-tex)
 
 #+end_src
+
+
+** org-graph
+:PROPERTIES:
+:TIME: 2020-03-12T10:57:45
+:ID: 0dad6fec-bfa9-4db8-b335-ee160447a1cf
+:EDGES:  
+:END:
+
+*** basic setup
+:PROPERTIES:
+:TIME: 2020-03-12T10:58:31
+:ID: 0dffd2cc-3030-4a77-9445-e242e3f6302c
+:EDGES:  
+:END:
+
+**** org-graph group
+:PROPERTIES:
+:TIME: 2020-03-12T10:59:42
+:ID: 29be902f-a88d-46f0-80b5-c6dd92f7584f
+:EDGES:  
+:END:
+
+***** Ceate org-graph group
+:PROPERTIES:
+:TIME: 2020-03-12T11:32:33
+:ID: df48b194-3ae4-4a3b-aacb-1e1d09c062ca
+:EDGES:  
+:END:
+
+#+begin_src emacs-lisp
+(defgroup org-graph nil
+  "This will be the main group for all of org-graph's stuff."
+  :group 'org)
+#+end_src
+
+***** Set up org-graph PROPERTIES drawer upon heading creation (PuHC)
+:PROPERTIES:
+:TIME: 2020-03-12T11:09:12
+:ID: fae2d0ce-d355-4e19-b55d-4af01fd7d3a7
+:EDGES:  
+:END:
+
+****** Create toggle for (PuHC)
+:PROPERTIES:
+:TIME: 2020-03-12T11:35:16
+:ID: 289acfc0-6ff6-4fb1-8a5c-2452fd1dab63
+:EDGES:  
+:END:
+
+#+begin_src emacs-lisp
+(defcustom add-org-graph-puhc t
+  "Turn on/off auto-add of vertex/edge PROPERTIES drawer."
+  :type 'boolean
+  :group 'org-graph)
+#+end_src
+
+****** PuHC code
+:PROPERTIES:
+:TIME: 2020-03-12T11:38:01
+:ID: 611270f8-889a-420d-8c0c-a188dd252c9c
+:EDGES:  
+:END:
+
+#+begin_src emacs-lisp
+(defadvice org-insert-heading (after add-id-stuff activate)
+  (when add-org-graph-puhc (template-puhc)))
+
+
+(defun template-puhc ()
+  (insert "\n:PROPERTIES:\n:TIME: "
+	  (format-time-string "%Y-%m-%dT%H:%M:%S")
+	  "\n:ID: "
+	  (org-id-uuid)
+	  "\n:EDGES:  \n:END:"))
+#+end_src
+
+#+RESULTS:
+: template-puhc
 
 ** My elisp
 

@@ -348,7 +348,7 @@ The document was typeset with
 		(format-time-string "/journal-%m-%d.org"))))
       "* Event: %?
  %i
-  From: %a"))))
+  From: %a"))) t)
  '(org-footnote-auto-adjust t)
  '(org-html-head-include-default-style nil)
  '(org-html-mathjax-options
@@ -381,7 +381,9 @@ The document was typeset with
      ("natalog" . 97)
      ("natamaint" . 98)
      ("natapump" . 99)
-     ("gesellschaft" . 103))))
+     ("gesellschaft" . 103)
+     ("deutsch" . 100)
+     ("buch" . 104))))
  '(org-todo-keywords
    (quote
     ((sequence "TODO(t@)" "NEXT(n@)" "TOGROK(g@)" "GROKKING(y@)" "IN-PROGRESS(p@)" "WAITING(w@)" "FEEDBACK(b@)" "HOLD(h@)" "INCIDENT(i@)" "VERIFY(v@)" "|" "GROKKED(k@)" "VERIFIED(r@)" "CANCELLED(c@/!)" "FIXED(f@)" "DONE(d@)" "TRANSFERED(u@)" "FEDBACK(e@)"))))
