@@ -317,6 +317,7 @@ The document was typeset with
  '(geiser-active-implementations (quote (racket guile chicken chez mit chibi)))
  '(geiser-default-implementation (quote racket))
  '(my-info-alist (quote ((my-name . "") (my-email . ""))))
+ '(org-agenda-files (quote ("/home/lawrence/Dropbox/org/ccynata/")))
  '(org-capture-templates
    (\`
     (("a" "My TODO task format." entry
@@ -348,7 +349,7 @@ The document was typeset with
 		(format-time-string "/journal-%m-%d.org"))))
       "* Event: %?
  %i
-  From: %a"))) t)
+  From: %a"))))
  '(org-footnote-auto-adjust t)
  '(org-html-head-include-default-style nil)
  '(org-html-mathjax-options
@@ -365,6 +366,8 @@ The document was typeset with
      (tagside "right"))))
  '(org-list-allow-alphabetical t)
  '(org-log-into-drawer nil)
+ '(org-log-state-notes-insert-after-drawers t)
+ '(org-log-states-order-reversed nil)
  '(org-table-convert-region-max-lines 1999)
  '(org-tag-alist
    (quote
