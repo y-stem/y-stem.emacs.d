@@ -319,37 +319,21 @@ The document was typeset with
  '(my-info-alist (quote ((my-name . "") (my-email . ""))))
  '(org-agenda-files (quote ("/home/lawrence/Dropbox/org/ccynata/")))
  '(org-capture-templates
-   (\`
+   (quote
     (("a" "My TODO task format." entry
       (file "~/Dropbox/org/ccynata/ccynatatasks.org")
-      "* TODO %? SCHEDULED: %t")
+      "* TODO %?\n%u\n%a\n" :clock-in t :clock-resume t)
+     ("m" "Meeting" entry (file "~/Dropbox/org/ccynata/ccynatatasks.org")
+	  "* MEETING with %? :MEETING:\n%t" :clock-in t :clock-resume t)
      ("e" "elisptips" entry
       (file+headline "~/Dropbox/org/elisptips.org" "ElispTips")
       "* %U  %i  %a")
-     ("g" "general" entry
-      (file "~/Dropbox/org/general.org" "General")
-      "* %U  %i  %a")
-     ("b" "My TODO task format." entry
-      (file
-       (lambda nil
-	 (buffer-file-name)))
-      "* TODO %? SCHEDULED: %t
-
- from: %a" :empty-lines 1)
-     ("c" "My TODO task format." entry
-      (file
-       (\,
-	(format "%s"
-		(buffer-file-name))))
-      "* TODO %? SCHEDULED: %t")
-     ("j" "Journal Note" entry
-      (file+olp+datetree
-       (\,
-	(concat org-directory
-		(format-time-string "/journal-%m-%d.org"))))
-      "* Event: %?
- %i
-  From: %a"))))
+     ("d" "Diary" entry (file+datetree "~/org/diary.org")
+      "* %?\n%U\n" :clock-in t :clock-resume t)
+     ("g" "To grok" entry (file "~/Dropbox/org/ccynata/ccynatatasks.org")
+	  "* %? :TOGROK: \n%t" :clock-in t :clock-resume t)
+     ("n" "Next Task" entry (file+headline "~/Dropbox/org/ccynata/ccynatatasks.org" "Tasks")
+      "** NEXT %? \nDEADLINE: %t"))))
  '(org-footnote-auto-adjust t)
  '(org-html-head-include-default-style nil)
  '(org-html-mathjax-options
@@ -389,7 +373,7 @@ The document was typeset with
      ("buch" . 104))))
  '(org-todo-keywords
    (quote
-    ((sequence "TODO(t@)" "NEXT(n@)" "TOGROK(g@)" "GROKKING(y@)" "IN-PROGRESS(p@)" "WAITING(w@)" "FEEDBACK(b@)" "HOLD(h@)" "INCIDENT(i@)" "VERIFY(v@)" "|" "GROKKED(k@)" "VERIFIED(r@)" "CANCELLED(c@/!)" "FIXED(f@)" "DONE(d@)" "TRANSFERED(u@)" "FEDBACK(e@)"))))
+    ((sequence "TODO(t@)" "NEXT(n@)" "TOGROK(g@)" "GROKKING(y@)" "IN-PROGRESS(p@)" "WAITING(w@)" "FEEDBACK(b@)" "HOLD(h@)" "MEETING(m@)" "INCIDENT(i@)" "VERIFY(v@)" "|" "GROKKED(k@)" "VERIFIED(r@)" "CANCELLED(c@/!)" "FIXED(f@)" "DONE(d@)" "TRANSFERED(u@)" "FEDBACK(e@)"))))
  '(package-selected-packages
    (quote
     (org-num rdf-prefix ediprolog sparql-mode emacsql-sqlite emacsql-mysql emacsql ess json-mode ac-slime cmake-mode gnuplot flymake-css ac-geiser quack geiser elcord erc-hl-nicks diminish htmlize sudo-edit magit company-shell company-lua company-jedi company-irony company-c-headers flycheck-clang-analyzer company flycheck yasnippet org ox-tufte ox-twbs org-bullets popup-kill-ring zzz-to-char hungry-delete expand-region rainbow-delimiters rainbow-mode beacon mark-multiple avy helm linum-relative swiper switch-window which-key ivy symon fancy-battery spaceline dashboard projectile async pretty-mode zerodark-theme use-package)))
