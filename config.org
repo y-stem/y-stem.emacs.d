@@ -1094,7 +1094,7 @@ Customize the =geiser-implementations-alist=
 (global-set-key (kbd "C-c 8") 'prolog-insert-comment-block)
 
 ;; inserts :- use_module(library())
-(global-set-key (kbd "C-c b")
+(global-set-key (kbd "C-c m")
 		(lambda ()
 		  (interactive)
 		  (insert ":- use_module(library()).")
@@ -1834,6 +1834,7 @@ Memes, but it's fun and tiny.
 
 (tempo-define-template "org-PROPERTIES_vertex-edge"
 		       '(":PROPERTIES:" n
+			 ":TIME: " (borgauf/insert-dateutc.1) n
 			 ":ID: " (borgauf/insert-uuid) n
 			 ":EDGES: " n
 			 ":END:" )
@@ -1907,6 +1908,8 @@ Memes, but it's fun and tiny.
 		       "<m" "Insert \\[ \\]" 'org-tempo-tags)
 
 #+end_src
+
+
 
 
 
@@ -2013,17 +2016,23 @@ Memes, but it's fun and tiny.
 
 
 (defun template-puhc ()
-  (insert "\n:PROPERTIES:\n:TIME: "
-	  (format-time-string "%Y-%m-%dT%H:%M:%S")
-	  "\n:ID: "
-	  (org-id-uuid)
-	  "\n:EDGES:  \n:END:"))
+  (save-excursion
+    (insert "\n:PROPERTIES:\n:TIME: "
+	    (format-time-string "%Y-%m-%dT%H:%M:%S")
+	    "\n:ID: "
+	    (org-id-uuid)
+	    "\n:EDGES:  \n:END:")
+    (org-cycle-hide-drawers 'all)))
 #+end_src
 
-#+RESULTS:
-: template-puhc
-
 ** My elisp
+
+*** Switch to *scratch*
+:PROPERTIES:
+:TIME: 2020-03-15T22:55:07
+:ID: 610a7d34-8065-4ce7-8328-f16f79f4c4fc
+:EDGES:  
+:END:
 
 *** Keep =define-skeleton= example around
 
