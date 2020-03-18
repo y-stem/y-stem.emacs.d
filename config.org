@@ -1481,14 +1481,24 @@ Make sure latest-greatest org-mode is on board
   (setq org-treat-S-cursor-todo-selection-as-state-change nil)
 
   (setq org-todo-keyword-faces
-	'(("TODO" . (:foreground "forest green" :weight bold))
-	  ("NEXT" :foreground "blue" :weight bold)
-	  ("IN-PROGRESS" :foreground "light blue" :weight bold)
-	  ("WAITING" :foreground "orange" :weight bold)
-	  ("HOLD" :foreground "magenta" :weight bold)
-	  ("CANCELLED" :foreground "light green" :weight bold)
-	  ("FIXED" :foreground "dark green" :weight bold)
-	  ("DONE" :foreground "forest green" :weight bold)))
+	'(("TODO" . (:foreground "red4"))
+	  ("NEXT" :foreground "blue3")
+	  ("TOGROK" :foreground "cyan4")
+	  ("GROKKING" :foreground "cyan3")
+	  ("GROKKED" :foreground "PaleGreen4")
+	  ("IN-PROGRESS" :foreground "light blue")
+	  ("WAITING" :foreground "orange")
+	  ("FEEDBACK" :foreground "DarkGoldenrod4")
+	  ("HOLD" :foreground "DarkSlateGray2")
+	  ("MEETING" :foreground "DarkSlateGray2")
+	  ("INCIDENT" :foreground "MediumPurple4")
+	  ("VERIFY" :foreground "MediumPurple2")
+	  ("CANCELLED" :foreground "PaleGreen4")
+	  ("FIXED" :foreground "PaleGreen4")
+	  ("TRANSFERRED" :foreground "PaleGreen3")
+	  ("FEDBACK" :foreground "PaleGreen3")
+	  ("VERIFIED" :foreground "PaleGreen3")
+	  ("DONE" :foreground "PaleGreen4")))
 
   (setq org-enforce-todo-dependencies t)
 
@@ -2027,12 +2037,33 @@ Memes, but it's fun and tiny.
 
 ** My elisp
 
-*** Switch to *scratch*
+*** Go to next buffer
 :PROPERTIES:
-:TIME: 2020-03-15T22:55:07
-:ID: 610a7d34-8065-4ce7-8328-f16f79f4c4fc
+:TIME: 2020-03-15T23:54:22
+:ID: 1a50322f-d2f8-48df-a5cf-f569d2bf9e43
 :EDGES:  
 :END:
+
+#+begin_src emacs-lisp
+(global-set-key (kbd "C-<f10>") 'next-buffer)
+#+end_src
+
+
+*** Switch to *scratch* 
+:PROPERTIES:
+:TIME: 2020-03-15T23:28:34
+:ID: 56a96062-3b75-4837-a34b-aa6f0da54fdd
+:EDGES: [[file:~/Dropbox/org/Bernt Hansen/org-mode.org::#KeyBindings][Key bindings]] 
+:END:
+
+#+begin_src emacs-lisp
+(defun bh/switch-to-scratch ()
+  (interactive)
+  (switch-to-buffer "*scratch*"))
+
+(global-set-key (kbd "<f9> s") 'bh/switch-to-scratch)
+#+end_src
+
 
 *** Keep =define-skeleton= example around
 
