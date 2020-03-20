@@ -1539,7 +1539,6 @@ Make sure latest-greatest org-mode is on board
 	   (C . t)
 	   (ocaml . t)
 	   (picolisp . t)
-	   (prolog . t)
 	   (sparql . t)
 	   (asymptote . t)
 	   (calc . t)

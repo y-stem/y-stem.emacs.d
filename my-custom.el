@@ -322,18 +322,30 @@ The document was typeset with
    (quote
     (("a" "My TODO task format." entry
       (file "~/Dropbox/org/ccynata/ccynatatasks.org")
-      "* TODO %?\n%u\n%a\n" :clock-in t :clock-resume t)
-     ("m" "Meeting" entry (file "~/Dropbox/org/ccynata/ccynatatasks.org")
-	  "* MEETING with %? :MEETING:\n%t" :clock-in t :clock-resume t)
+      "* TODO %?
+%u
+%a
+" :clock-in t :clock-resume t)
+     ("m" "Meeting" entry
+      (file "~/Dropbox/org/ccynata/ccynatatasks.org")
+      "* MEETING with %? :MEETING:
+%t" :clock-in t :clock-resume t)
      ("e" "elisptips" entry
       (file+headline "~/Dropbox/org/elisptips.org" "ElispTips")
       "* %U  %i  %a")
-     ("d" "Diary" entry (file+datetree "~/org/diary.org")
-      "* %?\n%U\n" :clock-in t :clock-resume t)
-     ("g" "To grok" entry (file "~/Dropbox/org/ccynata/ccynatatasks.org")
-	  "* %? :TOGROK: \n%t" :clock-in t :clock-resume t)
-     ("n" "Next Task" entry (file+headline "~/Dropbox/org/ccynata/ccynatatasks.org" "Tasks")
-      "** NEXT %? \nDEADLINE: %t"))))
+     ("d" "Diary" entry
+      (file+datetree "~/org/diary.org")
+      "* %?
+%U
+" :clock-in t :clock-resume t)
+     ("g" "To grok" entry
+      (file "~/Dropbox/org/ccynata/ccynatatasks.org")
+      "* %? :TOGROK: 
+%t" :clock-in t :clock-resume t)
+     ("n" "Next Task" entry
+      (file+headline "~/Dropbox/org/ccynata/ccynatatasks.org" "Tasks")
+      "** NEXT %? 
+DEADLINE: %t"))))
  '(org-footnote-auto-adjust t)
  '(org-html-head-include-default-style nil)
  '(org-html-mathjax-options
@@ -356,7 +368,7 @@ The document was typeset with
  '(org-tag-alist
    (quote
     (("math" . 109)
-     ("lisp" . 108)
+     ("leben" . 108)
      ("orgmode" . 111)
      ("wissenschaft" . 119)
      ("kunst" . 107)
@@ -370,7 +382,10 @@ The document was typeset with
      ("natapump" . 99)
      ("gesellschaft" . 103)
      ("deutsch" . 100)
-     ("buch" . 104))))
+     ("buch" . 104)
+     ("dialog" . 106)
+     ("szene" . 110)
+     ("hintergrund" . 113))))
  '(org-todo-keywords
    (quote
     ((sequence "TODO(t@)" "NEXT(n@)" "TOGROK(g@)" "GROKKING(y@)" "IN-PROGRESS(p@)" "WAITING(w@)" "FEEDBACK(b@)" "HOLD(h@)" "MEETING(m@)" "INCIDENT(i@)" "VERIFY(v@)" "|" "GROKKED(k@)" "VERIFIED(r@)" "CANCELLED(c@/!)" "FIXED(f@)" "DONE(d@)" "TRANSFERED(u@)" "FEDBACK(e@)"))))
