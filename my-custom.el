@@ -316,6 +316,7 @@ The document was typeset with
  '(doc-view-continuous t)
  '(geiser-active-implementations (quote (racket guile chicken chez mit chibi)))
  '(geiser-default-implementation (quote racket))
+ '(haskell-process-type (quote stack-ghci))
  '(my-info-alist (quote ((my-name . "") (my-email . ""))))
  '(org-agenda-files (quote ("/home/lawrence/Dropbox/org/ccynata/")))
  '(org-capture-templates
@@ -391,7 +392,7 @@ DEADLINE: %t"))))
     ((sequence "TODO(t@)" "NEXT(n@)" "TOGROK(g@)" "GROKKING(y@)" "IN-PROGRESS(p@)" "WAITING(w@)" "FEEDBACK(b@)" "HOLD(h@)" "MEETING(m@)" "INCIDENT(i@)" "VERIFY(v@)" "|" "GROKKED(k@)" "VERIFIED(r@)" "CANCELLED(c@/!)" "FIXED(f@)" "DONE(d@)" "TRANSFERED(u@)" "FEDBACK(e@)"))))
  '(package-selected-packages
    (quote
-    (org-num rdf-prefix ediprolog sparql-mode emacsql-sqlite emacsql-mysql emacsql ess json-mode ac-slime cmake-mode gnuplot flymake-css ac-geiser quack geiser elcord erc-hl-nicks diminish htmlize sudo-edit magit company-shell company-lua company-jedi company-irony company-c-headers flycheck-clang-analyzer company flycheck yasnippet org ox-tufte ox-twbs org-bullets popup-kill-ring zzz-to-char hungry-delete expand-region rainbow-delimiters rainbow-mode beacon mark-multiple avy helm linum-relative swiper switch-window which-key ivy symon fancy-battery spaceline dashboard projectile async pretty-mode zerodark-theme use-package)))
+    (hindent shm ob-sml sml-mode org-num rdf-prefix ediprolog sparql-mode emacsql-sqlite emacsql-mysql emacsql ess json-mode ac-slime cmake-mode gnuplot flymake-css ac-geiser quack geiser elcord erc-hl-nicks diminish htmlize sudo-edit magit company-shell company-lua company-jedi company-irony company-c-headers flycheck-clang-analyzer company flycheck yasnippet org ox-tufte ox-twbs org-bullets popup-kill-ring zzz-to-char hungry-delete expand-region rainbow-delimiters rainbow-mode beacon mark-multiple avy helm linum-relative swiper switch-window which-key ivy symon fancy-battery spaceline dashboard projectile async pretty-mode zerodark-theme use-package)))
  '(pos-tip-background-color "#36473A")
  '(pos-tip-foreground-color "#FFFFC8")
  '(reftex-default-bibliography (quote ("~/org/biblio/ref.bib")))

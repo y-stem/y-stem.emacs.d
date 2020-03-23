@@ -16,8 +16,8 @@
 # #+HTML_HEAD: <link rel="stylesheet" href="../../data.old.01302017/stylesheet.css" type="text/css">
 #+EXPORT_SELECT_TAGS: export
 #+EXPORT_EXCLUDE_TAGS: noexport
-#+OPTIONS: H:15 num:15 toc:nil \n:nil @:t ::t |:t _:{} *:t ^:{} prop:t
-#+OPTIONS: prop:t
+#+OPTIONS: H:15 num:15 toc:nil \n:nil @:t ::t |:t _:{} *:t ^:{} prop:nil
+# #+OPTIONS: prop:t
 # This makes MathJax not work
 # #+OPTIONS: tex:imagemagick
 # this makes MathJax work
