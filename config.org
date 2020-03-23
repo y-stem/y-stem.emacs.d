@@ -990,7 +990,7 @@ Each category also has additional settings.
 
 #+begin_src emacs-lisp
 (load-file "~/.emacs.d/modes/setup-sml.el")
-(require 'sml-mode)
+;;(require 'sml-mode)
 (use-package ob-sml
   :defer t
   :ensure t)
@@ -2050,6 +2050,11 @@ Memes, but it's fun and tiny.
                          n "#+end_src" )
                        "<hb" "Insert haskell basic block" 'org-tempo-tags)
 
+(tempo-define-template "org-src-sml-basic"
+                       '("#+begin_src sml" n
+                         n "#+end_src" )
+                       "<ml" "Insert SML basic block" 'org-tempo-tags)
+
 (tempo-define-template "org-eqnarray"
 		       '("\\begin{eqnarray} " '> n p
 			 n "\\end{eqnarray}" >)
@@ -2072,7 +2077,6 @@ Memes, but it's fun and tiny.
 		       "<ra" "Insert right arrow" 'org-tempo-tags)
 
 #+end_src
-
 
 *** stop <> auto-completion
 
