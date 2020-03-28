@@ -100,6 +100,13 @@ My new favourite one I guess, really decent default values.
   (load-theme 'zerodark t))
 #+END_SRC
 
+# #+BEGIN_SRC emacs-lisp
+# (use-package abyss-theme
+#   :ensure t
+#   :init
+#   (load-theme 'abyss t))
+# #+END_SRC
+
 ** Some customization
 The theme is great, really, but some of the concepts just suck with powerline.
 #+BEGIN_SRC emacs-lisp
@@ -253,6 +260,15 @@ Changes =lambda= to an actual symbol and a few others as well, only in the GUI v
 #+END_SRC
 
 ** Functionality
+
+*** Unicode help
+
+Supposedly makes text with unicode characters not bog down.
+
+#+begin_src emacs-lisp
+(setq inhibit-compacting-font-caches t)
+#+end_src
+
 *** Disable backups and auto-saves
 I don't use either, you might want to turn those from =nil= to =t= if you do.
 #+BEGIN_SRC emacs-lisp
@@ -990,10 +1006,13 @@ Each category also has additional settings.
 
 #+begin_src emacs-lisp
 (load-file "~/.emacs.d/modes/setup-sml.el")
-;;(require 'sml-mode)
+;(load-file "~/.emacs.d/modes/sml-mode-6.10.el")
+;(load-file "~/.emacs.d/modes/ob-sml.el")
+;(require 'sml-mode)
+;(require 'ob-sml)
 (use-package ob-sml
-  :defer t
-  :ensure t)
+   :defer t
+   :ensure t)
 #+end_src
 
 *** Scheme world
@@ -1729,6 +1748,7 @@ Makes it all look a bit nicer, I hate looking at asterisks.
   :config
   (add-hook 'org-mode-hook (lambda () (org-bullets-mode))))
 #+END_SRC
+
 
 ** Twitter Bootstrap
 ;; which seems to be an alternative way to export to HtML (not to a twitter account)

@@ -13,9 +13,9 @@
       ["default-org.org" my-eval-auto-insert-init-form])
      (("\\.\\([Hh]\\|hh\\|hpp\\|hxx\\|h\\+\\+\\)\\'" . "C / C++ header")
       (replace-regexp-in-string "[^A-Z0-9]" "_"
-				(replace-regexp-in-string "\\+" "P"
-							  (upcase
-							   (file-name-nondirectory buffer-file-name))))
+                                (replace-regexp-in-string "\\+" "P"
+                                                          (upcase
+                                                           (file-name-nondirectory buffer-file-name))))
       "#ifndef " str n "#define " str "
 
 " _ "
@@ -24,46 +24,46 @@
      (("\\.\\([Cc]\\|cc\\|cpp\\|cxx\\|c\\+\\+\\)\\'" . "C / C++ program")
       nil "#include \""
       (let
-	  ((stem
-	    (file-name-sans-extension buffer-file-name))
-	   ret)
-	(dolist
-	    (ext
-	     (quote
-	      ("H" "h" "hh" "hpp" "hxx" "h++"))
-	     ret)
-	  (when
-	      (file-exists-p
-	       (concat stem "." ext))
-	    (setq ret
-		  (file-name-nondirectory
-		   (concat stem "." ext))))))
+          ((stem
+            (file-name-sans-extension buffer-file-name))
+           ret)
+        (dolist
+            (ext
+             (quote
+              ("H" "h" "hh" "hpp" "hxx" "h++"))
+             ret)
+          (when
+              (file-exists-p
+               (concat stem "." ext))
+            (setq ret
+                  (file-name-nondirectory
+                   (concat stem "." ext))))))
       & 34 | -10)
      (("[Mm]akefile\\'" . "Makefile")
       . "makefile.inc")
      (html-mode lambda nil
-		(sgml-tag "html"))
+                (sgml-tag "html"))
      (plain-tex-mode . "tex-insert.tex")
      (bibtex-mode . "tex-insert.tex")
      (latex-mode "options, RET: " "\\documentclass[" str & 93 | -1 123
-		 (read-string "class: ")
-		 "}
+                 (read-string "class: ")
+                 "}
 "
-		 ("package, %s: " "\\usepackage["
-		  (read-string "options, RET: ")
-		  & 93 | -1 123 str "}
+                 ("package, %s: " "\\usepackage["
+                  (read-string "options, RET: ")
+                  & 93 | -1 123 str "}
 ")
-		 _ "
+                 _ "
 \\begin{document}
 " _ "
 \\end{document}")
      (("/bin/.*[^/]\\'" . "Shell-Script mode magic number")
       lambda nil
       (if
-	  (eq major-mode
-	      (default-value
-		(quote major-mode)))
-	  (sh-mode)))
+          (eq major-mode
+              (default-value
+                (quote major-mode)))
+          (sh-mode)))
      (ada-mode . ada-header)
      (("\\.[1-9]\\'" . "Man page skeleton")
       "Short description: " ".\\\" Copyright (C), "
@@ -102,13 +102,13 @@
       (user-full-name)
       (quote
        (if
-	   (search-backward "&"
-			    (line-beginning-position)
-			    t)
-	   (replace-match
-	    (capitalize
-	     (user-login-name))
-	    t t)))
+           (search-backward "&"
+                            (line-beginning-position)
+                            t)
+           (replace-match
+            (capitalize
+             (user-login-name))
+            t t)))
       (quote
        (end-of-line 1))
       " <"
@@ -122,9 +122,9 @@
       " --- " str
       (make-string
        (max 2
-	    (- 80
-	       (current-column)
-	       27))
+            (- 80
+               (current-column)
+               27))
        32)
       "-*- lexical-binding: t; -*-"
       (quote
@@ -143,13 +143,13 @@
       (user-full-name)
       (quote
        (if
-	   (search-backward "&"
-			    (line-beginning-position)
-			    t)
-	   (replace-match
-	    (capitalize
-	     (user-login-name))
-	    t t)))
+           (search-backward "&"
+                            (line-beginning-position)
+                            t)
+           (replace-match
+            (capitalize
+             (user-login-name))
+            t t)))
       (quote
        (end-of-line 1))
       " <"
@@ -158,28 +158,28 @@
 ;; Keywords: "
       (quote
        (require
-	(quote finder)))
+        (quote finder)))
       (quote
        (setq v1
-	     (mapcar
-	      (lambda
-		(x)
-		(list
-		 (symbol-name
-		  (car x))))
-	      finder-known-keywords)
-	     v2
-	     (mapconcat
-	      (lambda
-		(x)
-		(format "%12s:  %s"
-			(car x)
-			(cdr x)))
-	      finder-known-keywords "
+             (mapcar
+              (lambda
+                (x)
+                (list
+                 (symbol-name
+                  (car x))))
+              finder-known-keywords)
+             v2
+             (mapconcat
+              (lambda
+                (x)
+                (format "%12s:  %s"
+                        (car x)
+                        (cdr x)))
+              finder-known-keywords "
 ")))
       ((let
-	   ((minibuffer-help-form v2))
-	 (completing-read "Keyword, C-h: " v1 nil t))
+           ((minibuffer-help-form v2))
+         (completing-read "Keyword, C-h: " v1 nil t))
        str ", ")
       & -2 "
 
@@ -223,7 +223,7 @@
 @copying
 "
       (setq short-description
-	    (read-string "Short description: "))
+            (read-string "Short description: "))
       ".
 
 " "Copyright @copyright{} "
@@ -317,6 +317,7 @@ The document was typeset with
  '(geiser-active-implementations (quote (racket guile chicken chez mit chibi)))
  '(geiser-default-implementation (quote racket))
  '(haskell-process-type (quote stack-ghci))
+ '(indent-tabs-mode nil)
  '(my-info-alist (quote ((my-name . "") (my-email . ""))))
  '(org-agenda-files (quote ("/home/lawrence/Dropbox/org/ccynata/")))
  '(org-capture-templates
@@ -348,6 +349,7 @@ The document was typeset with
       "** NEXT %? 
 DEADLINE: %t"))))
  '(org-footnote-auto-adjust t)
+ '(org-hide-leading-stars nil)
  '(org-html-head-include-default-style nil)
  '(org-html-mathjax-options
    (quote
@@ -365,6 +367,7 @@ DEADLINE: %t"))))
  '(org-log-into-drawer nil)
  '(org-log-state-notes-insert-after-drawers t)
  '(org-log-states-order-reversed nil)
+ '(org-src-fontify-natively t)
  '(org-table-convert-region-max-lines 1999)
  '(org-tag-alist
    (quote
@@ -377,22 +380,23 @@ DEADLINE: %t"))))
      ("philosophie" . 112)
      ("emacs" . 101)
      ("factoid" . 102)
-     ("stembase.space" . 115)
+     ("sml" . 115)
      ("natalog" . 97)
-     ("natamaint" . 98)
+     ("briefe" . 98)
      ("natapump" . 99)
      ("gesellschaft" . 103)
      ("deutsch" . 100)
      ("buch" . 104)
      ("dialog" . 106)
      ("szene" . 110)
-     ("hintergrund" . 113))))
+     ("hintergrund" . 113)
+     ("zitat" . 122))))
  '(org-todo-keywords
    (quote
-    ((sequence "TODO(t@)" "NEXT(n@)" "TOGROK(g@)" "GROKKING(y@)" "IN-PROGRESS(p@)" "WAITING(w@)" "FEEDBACK(b@)" "HOLD(h@)" "MEETING(m@)" "INCIDENT(i@)" "VERIFY(v@)" "|" "GROKKED(k@)" "VERIFIED(r@)" "CANCELLED(c@/!)" "FIXED(f@)" "DONE(d@)" "TRANSFERED(u@)" "FEDBACK(e@)"))))
+    ((sequence "TODO(t@)" "NEXT(n@)" "TOGROK(g@)" "GROKKING(y@)" "IN-PROGRESS(p@)" "WAITING(w@)" "FEEDBACK(b@)" "HOLD(h@)" "MEETING(m@)" "INCIDENT(i@)" "VERIFY(v@)" "|" "GEGROKKT(k@)" "VERIFIED(r@)" "CANCELLED(c@/!)" "FIXED(f@)" "DONE(d@)" "TRANSFERED(u@)" "FEDBACK(e@)"))))
  '(package-selected-packages
    (quote
-    (hindent shm ob-sml sml-mode org-num rdf-prefix ediprolog sparql-mode emacsql-sqlite emacsql-mysql emacsql ess json-mode ac-slime cmake-mode gnuplot flymake-css ac-geiser quack geiser elcord erc-hl-nicks diminish htmlize sudo-edit magit company-shell company-lua company-jedi company-irony company-c-headers flycheck-clang-analyzer company flycheck yasnippet org ox-tufte ox-twbs org-bullets popup-kill-ring zzz-to-char hungry-delete expand-region rainbow-delimiters rainbow-mode beacon mark-multiple avy helm linum-relative swiper switch-window which-key ivy symon fancy-battery spaceline dashboard projectile async pretty-mode zerodark-theme use-package)))
+    (abyss-theme hindent shm ob-sml sml-mode org-num rdf-prefix ediprolog sparql-mode emacsql-sqlite emacsql-mysql emacsql ess json-mode ac-slime cmake-mode gnuplot flymake-css ac-geiser quack geiser elcord erc-hl-nicks diminish htmlize sudo-edit magit company-shell company-lua company-jedi company-irony company-c-headers flycheck-clang-analyzer company flycheck yasnippet org ox-tufte ox-twbs org-bullets popup-kill-ring zzz-to-char hungry-delete expand-region rainbow-delimiters rainbow-mode beacon mark-multiple avy helm linum-relative swiper switch-window which-key ivy symon fancy-battery spaceline dashboard projectile async pretty-mode zerodark-theme use-package)))
  '(pos-tip-background-color "#36473A")
  '(pos-tip-foreground-color "#FFFFC8")
  '(reftex-default-bibliography (quote ("~/org/biblio/ref.bib")))
@@ -405,7 +409,10 @@ DEADLINE: %t"))))
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(default ((t (:inherit nil :stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 136 :width normal :foundry "xos4" :family "Terminus"))))
- '(fringe ((t (:background "#292b2e")))))
+ '(fringe ((t (:background "#292b2e"))))
+ '(org-hide ((t nil)))
+ '(shm-current-face ((t (:inherit highlight))))
+ '(shm-quarantine-face ((t (:underline (:color "#FF0000" :style wave))))))
 
 ;;superceded capture template
 ;; ("t" "todo" entry

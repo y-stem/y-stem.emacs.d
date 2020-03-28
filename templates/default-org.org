@@ -9,7 +9,7 @@
 # Call borgauf/insert-dateutc.1 here
 #+DATE: 
 # #+Filetags: :SAGA
-#+TAGS: experiment_nata(e) idea_nata(i) chem_nata(c) logs_nata(l) y_stem(y)
+# #+TAGS: experiment_nata(e) idea_nata(i) chem_nata(c) logs_nata(l) y_stem(y)
 #+LANGUAGE:  en
 # #+INFOJS_OPT: view:showall ltoc:t mouse:underline path:http://orgmode.org/org-info.js
 #+HTML_HEAD: <link rel="stylesheet" href="../data/stylesheet.css" type="text/css">
