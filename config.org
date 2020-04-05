@@ -1577,7 +1577,7 @@ Make sure latest-greatest org-mode is on board
 
   ;;file to save todo items (this gets overridden by my-custom.el...
   ;; ...so we'll retire it
-  ;; (setq org-agenda-files (quote ("~/org/ccynata/ccynata-agenda.org")))
+  ;; (setq org-agenda-files (quote ("~/Dropbox/org/ccynata/ccynata-agenda.org")))
 
 
   ;;set priority range from A to C with default A
@@ -1631,7 +1631,7 @@ Make sure latest-greatest org-mode is on board
   ;; This is being overridden by my-custom.el...
   ;;...so we'll retire it...
   ;; (setq org-capture-templates
-  ;; 	'(("t" "todo" entry (file+headline "~/org/todo.org" "Tasks")
+  ;; 	'(("t" "todo" entry (file+headline "~/Dropbox/org/todo.org" "Tasks")
   ;; 	   "* TODO [#A] %?\nSCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+0d\"))\n")))
 
 
@@ -1781,22 +1781,22 @@ Makes it all look a bit nicer, I hate looking at asterisks.
 (use-package org-ref
   :after org
   :init
-  (setq reftex-default-bibliography '("~/org/biblio/ref.bib"))
-  (setq org-ref-bibliography-notes "~/org/biblio/notes/notes.org"
-        org-ref-default-bibliography '("~/org/biblio/ref.bib")
-        org-ref-pdf-directory "~/org/biblio/bibtex-pdfs/")
+  (setq reftex-default-bibliography '("~/Dropbox/org/biblio/ref.bib"))
+  (setq org-ref-bibliography-notes "~/Dropbox/org/biblio/notes/notes.org"
+        org-ref-default-bibliography '("~/Dropbox/org/biblio/ref.bib")
+        org-ref-pdf-directory "~/Dropbox/org/biblio/bibtex-pdfs/")
 
   (unless (file-exists-p org-ref-pdf-directory)
     (make-directory org-ref-pdf-directory t))
 
-  (setq helm-bibtex-bibliography "~/org/biblio/ref.bib")
-  (setq helm-bibtex-library-path "~/org/biblio/bibtex-pdfs/")
+  (setq helm-bibtex-bibliography "~/Dropbox/org/biblio/ref.bib")
+  (setq helm-bibtex-library-path "~/Dropbox/org/biblio/bibtex-pdfs/")
 
   (setq helm-bibtex-pdf-open-function
         (lambda (fpath)
           (start-process "open" "*open*" "open" fpath)))
 
-  (setq helm-bibtex-notes-path "~/org/biblio/notes/notes.org")
+  (setq helm-bibtex-notes-path "~/Dropbox/org/biblio/notes/notes.org")
   (setq org-ref-bibtex-hydra-key-binding (kbd "\C-cj"))
   
   :config
