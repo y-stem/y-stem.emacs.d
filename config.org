@@ -193,12 +193,12 @@ The theme is great, really, but some of the concepts just suck with powerline.
    `(erc-nick-default-face ((,class :foreground ,blue :background ,background :weight bold)))
 
    ;; org stuff
-   `(outline-1 ((,class (:foreground ,blue :weight bold :height 1.8 :bold nil))))
-   `(outline-2 ((,class (:foreground ,purple :weight bold :height 1.7 :bold nil))))
-   `(outline-3 ((,class (:foreground ,peach :weight bold :height 1.6 :bold nil))))
-   `(outline-4 ((,class (:foreground ,green-light :weight bold :height 1.5 :bold nil))))
-   `(outline-5 ((,class (:foreground ,blue :weight bold :height 1.4 :bold nil))))
-   `(outline-6 ((,class (:foreground ,purple :weight bold :height 1.3 :bold nil))))
+   `(outline-1 ((,class (:foreground ,blue :weight bold :height 1.2 :bold nil))))
+   `(outline-2 ((,class (:foreground ,purple :weight bold :height 1.2 :bold nil))))
+   `(outline-3 ((,class (:foreground ,peach :weight bold :height 1.2 :bold nil))))
+   `(outline-4 ((,class (:foreground ,green-light :weight bold :height 1.2 :bold nil))))
+   `(outline-5 ((,class (:foreground ,blue :weight bold :height 1.2 :bold nil))))
+   `(outline-6 ((,class (:foreground ,purple :weight bold :height 1.2 :bold nil))))
    `(outline-7 ((,class (:foreground ,peach :weight bold :height 1.2 :bold nil))))
    `(outline-8 ((,class (:foreground ,green-light :weight bold :height 1.1 :bold nil))))
    
@@ -207,6 +207,7 @@ The theme is great, really, but some of the concepts just suck with powerline.
    `(org-block-end-line ((,class (:background ,background-blue :foreground ,blue
 					      :bold t :height 1.0))))))
 #+END_SRC
+
 
 * Basic Interface Settings
 These are setting that do not depend on packages and are built-in enhancements to the UI.
@@ -2081,7 +2082,7 @@ Memes, but it's fun and tiny.
                        "<hb" "Insert haskell basic block" 'org-tempo-tags)
 
 (tempo-define-template "org-src-sml-basic"
-                       '("#+begin_src sml" n
+                       '("#+begin_src sml :exports both" n
                          n "#+end_src" )
                        "<ml" "Insert SML basic block" 'org-tempo-tags)
 
@@ -2102,11 +2103,19 @@ Memes, but it's fun and tiny.
 			 "# end math" n)
 		       "<m" "Insert \\[ \\]" 'org-tempo-tags)
 
+(tempo-define-template "org-sharp-s"
+		       '("ß")
+		       "<sz" "Insert sharp-s" 'org-tempo-tags)
+
 (tempo-define-template "org-right-arrow"
 		       '("➝")
 		       "<ra" "Insert right arrow" 'org-tempo-tags)
 
 #+end_src
+
+#+RESULTS:
+: tempo-template-org-right-arrow
+
 
 *** stop <> auto-completion
 
@@ -2337,4 +2346,4 @@ Memes, but it's fun and tiny.
       (error "%s is not an elisp function" name))))
 #+END_SRC
 
-*** ccynata software
+

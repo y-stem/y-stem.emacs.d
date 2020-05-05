@@ -392,7 +392,8 @@ DEADLINE: %t"))))
      ("Hintergrund" . 113)
      ("Zitat" . 122)
      ("Psychologie" . 121)
-     ("Bildung" . 114))))
+     ("Bildung" . 114)
+     ("MOOC" . 120))))
  '(org-todo-keywords
    (quote
     ((sequence "TODO(t@)" "NEXT(n@)" "TOGROK(g@)" "GROKKING(y@)" "IN-PROGRESS(p@)" "WAITING(w@)" "FEEDBACK(b@)" "HOLD(h@)" "MEETING(m@)" "INCIDENT(i@)" "VERIFY(v@)" "|" "GEGROKKT(k@)" "VERIFIED(r@)" "CANCELLED(c@/!)" "FIXED(f@)" "DONE(d@)" "TRANSFERED(u@)" "FEDBACK(e@)"))))
@@ -410,7 +411,7 @@ DEADLINE: %t"))))
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 136 :width normal :foundry "xos4" :family "Terminus"))))
+ '(default ((t (:inherit nil :stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 143 :width normal :foundry "prch" :family "PFDin"))))
  '(fringe ((t (:background "#292b2e"))))
  '(org-hide ((t nil)))
  '(shm-current-face ((t (:inherit highlight))))
